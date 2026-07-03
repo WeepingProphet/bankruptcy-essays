@@ -195,10 +195,10 @@ def episode_page(ep):
   <div class="grid2">
     <div class="big">{esc(ep['glyph'])}</div>
     <div>
-      <p class="eyebrow2" style="color:var(--gold)">מסה חזותית</p>
+      <p class="eyebrow2" style="color:var(--gold)">סיכום גרפי</p>
       <h3>{esc(ep['essay_title'])}</h3>
       <p>גרסה אינטראקטיבית של הפרק: הגרפיקה משתנה תוך כדי גלילה ומראה בדיוק היכן נותר שיקול הדעת של הנאמן, והיכן הנוהל כובל אותו.</p>
-      <a class="btn solid" href="essay.html">קריאת המסה החזותית ←</a>
+      <a class="btn solid" href="essay.html">קריאת הסיכום הגרפי ←</a>
     </div>
   </div>
 </div></section>
