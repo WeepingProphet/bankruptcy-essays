@@ -229,7 +229,6 @@ def homepage():
   <div class="cards">
     {cards.strip()}
   </div>
-  <p style="margin-top:30px"><a class="back" href="ab/">🎧 השוואת מנועי קול (A/B) — v3 מול turbo_v2_5 ←</a></p>
 </div></section>
 """ + FOOTER
 
