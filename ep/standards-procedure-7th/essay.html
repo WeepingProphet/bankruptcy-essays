@@ -67,8 +67,9 @@
   @keyframes grow{to{width:var(--w)}}
   .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
 
-  .stats{display:flex;justify-content:space-around;gap:10px;text-align:center}
-  .stat .val{font-size:clamp(48px,12vw,96px);font-weight:900;line-height:1}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 18px;text-align:center;align-items:start}
+  .stat{min-width:0}
+  .stat .val{font-size:clamp(26px,4vw,44px);font-weight:900;line-height:1.1;overflow-wrap:break-word}
   .stat .lbl{color:var(--muted);font-size:19px;margin-top:8px}
 
   .cols{display:flex;gap:20px}
