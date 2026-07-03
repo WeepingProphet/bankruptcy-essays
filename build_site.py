@@ -229,6 +229,7 @@ def homepage():
   <div class="cards">
     {cards.strip()}
   </div>
+  <p style="margin-top:30px"><a class="back" href="ab/">🎧 השוואת מנועי קול (A/B) — v3 מול multilingual_v2 ←</a></p>
 </div></section>
 """ + FOOTER
 
