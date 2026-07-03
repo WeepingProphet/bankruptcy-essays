@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>מחצית, לא יותר · חדלות בגובה העיניים</title>
+<meta name="description" content="מהדורה 7 של נוהל אמות המידה לקביעת תשלום חודשי קובעת נוסחה אחת, טבלה אחת וכללי זקיפת הכנסה — היכן נותר שיקול הדעת של הנאמן, והיכן מסתתר המוקש" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1512; --ink2:#1f1917; --bone:#f2efe7; --oxblood:#1f6f5c;
+    --omer:#d9a441; --maya:#5c8fb3; --muted:#b8afa4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:Rubik,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:var(--maya)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+  /* ---- hero ---- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:60px 22px;overflow:hidden}
+  .hero .kicker{color:var(--oxblood);font-weight:800;letter-spacing:6px;font-size:16px}
+  .hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;margin:14px 0 10px;max-width:14ch}
+  .hero .dek{color:var(--muted);font-size:clamp(18px,3.4vw,26px);max-width:30ch;margin:0 auto}
+  .hook{margin-top:46px}
+  .hook .val{font-size:clamp(90px,26vw,220px);font-weight:900;line-height:.9;color:var(--bone);
+    text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hook .lbl{color:var(--muted);font-size:clamp(16px,3.6vw,22px);max-width:24ch;margin:14px auto 0}
+  .scrollcue{position:absolute;bottom:26px;color:var(--muted);font-size:15px;letter-spacing:2px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  .courthouse{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.06;z-index:-1}
+  .courthouse svg{width:min(760px,90vw)}
+
+  /* ---- scrolly ---- */
+  .scrolly{position:relative}
+  .scrolly__graphic{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px 0}
+  .gfx{width:100%;max-width:720px;max-height:58vh;overflow:hidden}
+  .scrolly__steps{position:relative;margin-top:-100vh;z-index:2}
+  .step{min-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding:0 18px 5vh}
+  .step .card{background:rgba(17,13,13,.82);backdrop-filter:blur(7px);
+    border:1px solid rgba(122,31,31,.55);border-radius:20px;padding:22px 26px;max-width:560px;
+    font-size:clamp(19px,3.4vw,25px);font-weight:600;transition:opacity .4s, transform .4s;opacity:.35;transform:translateY(10px)}
+  .step.active .card{opacity:1;transform:none;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .anno{display:block;margin-top:10px;color:var(--omer);font-size:16px;font-weight:700}
+
+  /* ---- visual components ---- */
+  .vpanel{background:linear-gradient(180deg,#241c1a,#181312);border:2px solid var(--oxblood);
+    border-radius:26px;padding:28px 30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vtitle{display:flex;align-items:center;gap:10px;color:var(--oxblood);font-weight:800;font-size:26px;margin-bottom:18px}
+  .vtitle i{width:12px;height:12px;background:var(--oxblood);border-radius:3px;display:inline-block}
+  .gv-item{animation:fadeUp .6s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .tl-row{display:flex;gap:16px;margin-bottom:14px}
+  .tl-dot{width:22px;height:22px;border-radius:50%;background:var(--oxblood);flex:0 0 auto;margin-top:4px;box-shadow:0 0 0 5px var(--ink)}
+  .tl-date{color:var(--omer);font-weight:800;font-size:22px}
+  .tl-label{color:var(--bone);font-weight:600;font-size:23px}
+
+  .bar-row{margin-bottom:14px}
+  .bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:23px;margin-bottom:5px}
+  .bar-track{height:22px;background:rgba(243,239,232,.12);border-radius:7px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;width:0;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
+
+  .stats{display:flex;justify-content:space-around;gap:10px;text-align:center}
+  .stat .val{font-size:clamp(48px,12vw,96px);font-weight:900;line-height:1}
+  .stat .lbl{color:var(--muted);font-size:19px;margin-top:8px}
+
+  .cols{display:flex;gap:20px}
+  .col{flex:1}
+  .col h4{font-size:22px;font-weight:800;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid}
+  .col.r h4{color:var(--maya);border-color:var(--maya)}
+  .col.l h4{color:var(--omer);border-color:var(--omer)}
+  .col p{margin:0 0 8px;font-size:20px;display:flex;gap:6px}
+  .divider{width:2px;background:rgba(243,239,232,.15)}
+
+  .judge{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .judge .d{width:15px;height:15px;border-radius:50%;flex:0 0 auto}
+  .judge .n{font-weight:800;font-size:23px;min-width:150px}
+  .judge .s{color:var(--muted);font-size:20px}
+
+  .verdict{text-align:center;padding:14px 0}
+  .verdict .lbl{color:var(--oxblood);font-weight:700;letter-spacing:2px;font-size:22px}
+  .verdict .val{font-size:clamp(44px,10vw,80px);font-weight:900;margin:8px 0}
+  .verdict .sub{color:var(--muted);font-size:22px}
+
+  .quote{font-size:clamp(24px,4.6vw,36px);font-weight:700;line-height:1.35}
+  .quote .mark{color:var(--oxblood);font-size:80px;line-height:.4;height:34px;font-weight:900}
+  .quote .src{color:var(--maya);font-weight:700;font-size:22px;margin-top:14px}
+
+  .hero-v{text-align:center}
+  .hero-v .val{font-size:clamp(70px,20vw,180px);font-weight:900;line-height:.9}
+  .hero-v .lbl{color:var(--muted);font-size:22px;margin-top:12px}
+
+  /* ---- poll ---- */
+  .poll{padding:90px 22px;text-align:center}
+  .poll h3{font-size:clamp(26px,5vw,40px);font-weight:900;margin:0 0 26px}
+  .poll .opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .poll button{background:transparent;border:2px solid var(--oxblood);color:var(--bone);
+    font-family:inherit;font-size:22px;font-weight:800;padding:16px 34px;border-radius:999px;cursor:pointer;transition:.2s}
+  .poll button:hover{background:var(--oxblood)}
+  .poll button.sel{background:var(--oxblood)}
+  .poll .reveal{max-width:34ch;margin:28px auto 0;color:var(--bone);font-size:22px;
+    opacity:0;transform:translateY(10px);transition:.5s}
+  .poll .reveal.show{opacity:1;transform:none}
+
+  /* ---- footer ---- */
+  .foot{border-top:1px solid rgba(243,239,232,.14);padding:60px 22px;text-align:center;color:var(--muted)}
+  .foot .cases{font-size:16px;line-height:1.9}
+  .foot .judges{font-size:16px;margin-top:14px}
+  .foot .brand{color:var(--oxblood);font-weight:800;letter-spacing:4px;margin-top:30px;font-size:20px}
+  .foot a{display:inline-block;margin-top:16px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .step .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="courthouse" aria-hidden="true">
+  <svg viewBox="0 0 200 160" fill="none" stroke="#f3efe8" stroke-width="2">
+    <polygon points="15,62 100,14 185,62"/><rect x="18" y="64" width="164" height="10"/>
+    <rect x="28" y="78" width="16" height="60" rx="2"/><rect x="60" y="78" width="16" height="60" rx="2"/>
+    <rect x="92" y="78" width="16" height="60" rx="2"/><rect x="124" y="78" width="16" height="60" rx="2"/>
+    <rect x="156" y="78" width="16" height="60" rx="2"/><rect x="14" y="140" width="172" height="12"/>
+  </svg>
+</div>
+
+<header class="hero">
+  <div class="kicker">חדלות בגובה העיניים</div>
+  <h1 id="h-title"></h1>
+  <p class="dek" id="h-dek"></p>
+  <div class="hook"><div class="val" id="h-val"></div><div class="lbl" id="h-lbl"></div></div>
+  <div class="scrollcue">גללו למטה ↓</div>
+</header>
+
+<section class="scrolly">
+  <div class="scrolly__graphic"><div class="gfx" id="gfx"></div></div>
+  <div class="scrolly__steps" id="steps"></div>
+</section>
+
+<section class="poll" id="poll" hidden>
+  <h3 id="poll-q"></h3>
+  <div class="opts" id="poll-opts"></div>
+  <p class="reveal" id="poll-reveal"></p>
+</section>
+
+<footer class="foot">
+  <div class="meta" id="f-meta"></div>
+  <div class="brand">חדלות בגובה העיניים</div>
+  <a href="" target="_blank" rel="noopener">להאזנה לפרק המלא →</a>
+</footer>
+
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+window.ESSAY = {"title": "מחצית, לא יותר", "dek": "מהדורה 7 של נוהל אמות המידה לקביעת תשלום חודשי קובעת נוסחה אחת, טבלה אחת וכללי זקיפת הכנסה — היכן נותר שיקול הדעת של הנאמן, והיכן מסתתר המוקש", "hook": {"value": "752 ₪", "label": "התשלום החודשי של חייב נשוי עם שני ילדים, שהתא המשפחתי שלו מכניס 13,438 ₪ נטו בחודש"}, "sections": [{"prose": "נספח ב׳ לנוהל מדגים את המסלול כולו: תא משפחתי של ארבע נפשות עם הכנסה נטו של 13,438 ₪, ממנה מופחתים הסכום הבסיסי והוצאות מיוחדות מוכרות. מההכנסה הפנויה שנותרה — 3,009 ₪ — החייב מעביר לקופת הנשייה מחצית מחלקו היחסי בלבד.", "visual": {"type": "stats", "items": [{"value": "13,438 ₪", "label": "הכנסה נטו של התא המשפחתי"}, {"value": "9,229 ₪−", "label": "הסכום הבסיסי (זוג + 2 ילדים)"}, {"value": "1,200 ₪−", "label": "הוצאות מיוחדות מאושרות"}, {"value": "752 ₪", "label": "התשלום החודשי לקופת הנשייה"}]}, "annotation": "דמי המחיה שנותרים בפועל בידי התא המשפחתי: 12,686 ₪ — הרבה מעבר לסכום הבסיסי שבטבלה."}, {"prose": "הנוסחה לא נולדה בחלל ריק: היא ממלאת חלל חקיקתי בן שמונה שנים. כללי המחיה בכבוד שסעיף 162(ב) הפקיד בידי שר המשפטים מעולם לא נקבעו, ומחשבון האומדנים שנבנה על בסיס ועדת חריס נזנח לאחר שעורכי הדין בכונס הרשמי והנאמנים סטו ממנו שוב ושוב.", "visual": {"type": "timeline", "title": "שמונה שנים בלי כללי מחיה בכבוד", "events": [{"date": "16.12.2015", "label": "דוח ועדת חריס מוגש לשר המשפטים"}, {"date": "2018", "label": "חקיקת חוק חדלות פירעון ושיקום כלכלי"}, {"date": "26.12.2018", "label": "פיזור הכנסת ה־20 — ועדת החוקה לא מאשרת כללי מחיה בכבוד"}, {"date": "11.02.2020", "label": "הלכת לשצ׳נקו: קצבת הנכות כרצפת קיום בסיסית"}, {"date": "12.05.2020", "label": "נוהל 13 יוצא לדרך"}, {"date": "17.06.2026", "label": "מהדורה 7 — הגרסה הנוכחית"}]}, "annotation": "המוקש ההיסטורי: המחשבון הסטטיסטי נכשל דווקא בגלל שיקול הדעת של העוסקים בתחום. הנוהל מגיב בכך שהוא מצמצם אותו."}, {"prose": "נקודת המוצא המבנית: מדיניות הממונה היא החלופה שבסעיף 156(ב) — ההכנסה נשארת בידי החייב, והוא מעביר תשלומים עתיים. אך זו זכות מותנית, לא ברירת מחדל חסינה.", "visual": {"type": "contrast", "title": "סעיף 156: שתי חלופות, מדיניות אחת", "left": {"title": "156(א) — הסנקציה", "points": ["ההכנסה נכללת בנכסי קופת הנשייה", "המעביד מעביר את המשכורת ישירות לקופה", "הנאמן מחזיר לחייב את דמי המחיה בלבד", "מופעלת כשהחייב אינו משלם כסדרו"]}, "right": {"title": "156(ב) — ברירת המחדל", "points": ["החייב מותיר בידיו את הכנסתו", "מעביר תשלום חודשי לקופת הנשייה", "שומר על אוטונומיה כלכלית בתקופת הביניים", "מותנה בעמידה בתשלומים"]}}, "annotation": "לנאמן: פיגור בתשלומים הוא העילה להיפוך החלופות — והמעבר ל־156(א) הופך את הנאמן לצינור השכר של החייב."}, {"prose": "הנוסחה עצמה פשוטה במתכוון: מההכנסה נטו של התא המשפחתי מפחיתים את הסכום הבסיסי והוצאות מיוחדות, מחלקים לשניים, ומכפילים בחלקו היחסי של החייב בהכנסות התא. החייב משלם רק מתוך החלק שלו — לא מתוך הכנסת בן הזוג.", "visual": {"type": "hero", "value": "(X − Y − Z) ÷ 2 × A", "label": "הכנסה נטו, פחות סכום בסיסי, פחות הוצאות מיוחדות — חצי מחלקו היחסי של החייב"}, "annotation": "אם החייב מכניס 75% מהכנסות התא — הוא ישלם 75% ממחצית ההכנסה הפנויה. הכנסת בן הזוג משפיעה על החישוב אך אינה נגבית."}, {"prose": "הסכום הבסיסי מעוגן בקצבת נכות כללית לדרגת אי־כושר יציבה של 75% ומעלה, בעקבות הלכת לשצ׳נקו. הטבלה עיוורת במכוון למקום מגורים, גיל ומין — והיא מגלמת בתוכה גם את הוצאות המגורים, שכירות או משכנתא.", "visual": {"type": "stats", "items": [{"value": "4,711 ₪", "label": "יחיד"}, {"value": "6,229 ₪", "label": "זוג"}, {"value": "9,229 ₪", "label": "זוג + 2 ילדים"}, {"value": "1,500 ₪+", "label": "לכל ילד (מהחמישי ואילך: 1,300 ₪)"}]}, "annotation": "המוקש: אין הפחתה נפרדת לשכר דירה או משכנתא — הם כבר בפנים. טענת חייב להוצאות מגורים חריגות תידון רק כשיקול דעת פרטני."}, {"prose": "הרציונל של הרצפה נקבע עוד לפני הנוהל, בבית המשפט העליון.", "visual": {"type": "quote", "text": "גמלה זו נועדה להבטיח את צורכי מחייתו המינימליים של הזכאי ולספק לו אמצעי קיום בסיסיים", "source": "רע״א 6353/19 לשצ׳נקו נ׳ הכונס הרשמי (11.02.2020)"}, "annotation": "לשצ׳נקו מחייבת גם קדימה: הנוהל מתחייב לבחון את סיווג הגמלאות השונות ולפרסם עמדה — סעיפים 303 ו־311 לחוק הביטוח הלאומי מוגנים מקופת הנשייה."}, {"prose": "מעל הסכום הבסיסי, ההוצאות המיוחדות הן זירת האסמכתאות: כל הפחתה טעונה תיעוד ונתונה לאישור הממונה, וחלקן קשיחות בתקרה.", "visual": {"type": "stats", "items": [{"value": "2,500 ₪", "label": "תקרת טיפול לילד שאינו זכאי ללימוד חובה"}, {"value": "1,000 ₪", "label": "תקרת צהרון לילד עד כיתה ג׳"}, {"value": "ללא תקרה", "label": "בריאות חיונית שמחוץ לסל ולביטוח המשלים"}, {"value": "תח״צ בלבד", "label": "הוצאות יציאה לעבודה"}]}, "annotation": "שימו לב לקיזוז: חייב המקבל גמלת שירותים מיוחדים — ההוצאות שבגינן ניתנה הגמלה יקוזזו מההכרה."}, {"prose": "כאן טמון המוקש המרכזי לנאמן: הנוהל זוקף הכנסות רעיוניות. בן זוג שאינו עובד ייוחס לו ממוצע שכרו בשנה הקודמת, וחייב שאינו עובד ללא הצדק — הגבוה מבין ממוצע שכרו לשכר מינימום נטו, ברוח פסיקת זחאלקה.", "visual": {"type": "contrast", "title": "זקיפת הכנסה למי שאינו עובד", "left": {"title": "בן זוג שאינו עובד", "points": ["ייוחס ממוצע שכרו בשנה שקדמה לצו", "אלא אם הוכח טעם מבוסס לאי־השתלבות", "אם בן הזוג בהליך משלו — תשלומו החודשי מופחת מההכנסה הפנויה"]}, "right": {"title": "חייב שאינו עובד ללא הצדק", "points": ["ייוחס הגבוה מבין: ממוצע שכר שנה אחורה או שכר מינימום נטו", "נשקלים מקורות הכנסה פוטנציאליים והתנהלות כלכלית עובר להליך", "בר״ע 58589-04-25 זחאלקה נ׳ הממונה"]}}, "annotation": "ובמשמורת משותפת: הסכום הבסיסי לילד נחתך לפי ימי השהות — 750 ₪ בלבד במשמורת משותפת מלאה, לצד ההקצבה למזונות לפי סעיף 179."}, {"prose": "מחצית ההכנסה הפנויה שנותרת בידי החייב היא תמריץ מודע — בהשראת המודל הקנדי — למיצוי כושר השתכרות ולשקיפות. אבל היא אינה זכות קנויה: בהכנסה פנויה גבוהה במיוחד, ובשקלול התנהלות החייב בהליך, השיעור יירד מתחת לחמישים אחוז.", "visual": {"type": "hero", "value": "במשורה", "label": "כך מגדיר הנוהל את מרחב הסטייה מהנוסחה — לכאן ולכאן"}, "annotation": "ולכיוון השני: לאחר הצו לשיקום כלכלי הממונה רשאי להמליץ להותיר בידי החייב סכום העולה על דמי המחיה, מכוח סעיף 162(א)(2)."}], "poll": {"question": "בתיק שבו ההכנסה הפנויה של החייב גבוהה במיוחד — מה תמליצו לממונה?", "options": ["להפחית את חלקו של החייב מתחת למחצית — אינטרס הנושים גובר", "לשמור על המחצית — התמריץ למיצוי השתכרות שווה יותר לקופה"], "reveal": "הנוהל מכריע: במקרים חריגים של הכנסה פנויה גבוהה במיוחד יוותר בידי החייב פחות מחמישים אחוז, ומשקל נוסף יינתן לשקיפות ולשיתוף הפעולה של החייב בהליך."}, "method": "מבוסס על נוהל מספר 13 של הממונה על הליכי חדלות פירעון ושיקום כלכלי, ״אמות מידה לקביעת תשלום חודשי לחייב״, מהדורה 7 (גרסת יוני 2026, עדכון 17.06.2026). סכומי הטבלה מעודכנים לשנת 2025; הדוגמה המספרית לקוחה מנספח ב׳ לנוהל.", "meta": [{"label": "מהדורה / גרסה", "emoji": "📄", "values": ["גרסת יוני 2026"]}]};
+(function(){
+  var E = window.ESSAY, esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;};
+
+  // hero + footer
+  document.getElementById('h-title').textContent = E.title||'';
+  document.getElementById('h-dek').textContent = E.dek||'';
+  if(E.hook){document.getElementById('h-val').textContent=E.hook.value||'';document.getElementById('h-lbl').textContent=E.hook.label||'';}
+  if(E.meta&&E.meta.length){document.getElementById('f-meta').innerHTML=E.meta.map(function(m){
+    return '<div>'+esc((m.emoji||'')+' '+(m.label?m.label+': ':'')+(m.values||[]).join(' · '))+'</div>';}).join('');}
+
+  // ---- visual renderers ----
+  function di(i){return 'style="animation-delay:'+(i*0.08)+'s"';}
+  function render(v){
+    if(!v) return '';
+    switch(v.type){
+      case 'hero': return '<div class="vpanel hero-v"><div class="val">'+esc(v.value)+'</div><div class="lbl">'+esc(v.label)+'</div></div>';
+      case 'timeline': return '<div class="vpanel">'+vtitle(v.title)+ (v.events||[]).map(function(e,i){
+        return '<div class="tl-row gv-item" '+di(i)+'><span class="tl-dot"></span><div><div class="tl-date">'+esc(e.date)+'</div><div class="tl-label">'+esc(e.label)+'</div></div></div>';}).join('')+'</div>';
+      case 'voteCompare': {
+        var max=1;(v.rounds||[]).forEach(function(r){(r.results||[]).forEach(function(x){if(x.votes>max)max=x.votes;});});
+        return '<div class="vpanel">'+vtitle(v.title)+(v.rounds||[]).map(function(r){
+          var win=Math.max.apply(null,(r.results||[]).map(function(x){return x.votes;}));
+          return '<div class="round-name">'+esc(r.name)+'</div>'+(r.results||[]).map(function(x){
+            var w=Math.round(x.votes/max*100);var c=x.votes===win?'var(--oxblood)':'rgba(217,105,79,.5)';
+            return '<div class="bar-row"><div class="bar-head"><span>'+esc(x.name)+'</span><span data-count="'+x.votes+'">0</span></div><div class="bar-track"><div class="bar-fill" style="--w:'+w+'%;background:'+c+'"></div></div></div>';
+          }).join('');}).join('')+'</div>';
+      }
+      case 'stats': return '<div class="vpanel"><div class="stats">'+(v.items||[]).map(function(it,i){
+        var n=/^\d+$/.test(String(it.value));
+        return '<div class="stat gv-item" '+di(i)+'><div class="val" '+(n?'data-count="'+it.value+'"':'')+'>'+(n?'0':esc(it.value))+'</div><div class="lbl">'+esc(it.label)+'</div></div>';}).join('')+'</div></div>';
+      case 'contrast': return '<div class="vpanel"><div class="cols">'+col(v.right,'r')+'<div class="divider"></div>'+col(v.left,'l')+'</div></div>';
+      case 'judges': return '<div class="vpanel">'+vtitle(v.title)+(v.judges||[]).map(function(j,i){
+        return '<div class="judge gv-item" '+di(i)+'><span class="d" style="background:'+(i===0?'var(--oxblood)':'var(--omer)')+'"></span><span class="n">'+esc(j.name)+'</span><span class="s">'+esc(j.stance)+'</span></div>';}).join('')+'</div>';
+      case 'verdict': return '<div class="vpanel verdict"><div class="lbl">'+esc(v.label)+'</div><div class="val">'+esc(v.value)+'</div>'+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+'</div>';
+      case 'quote': return '<div class="vpanel quote"><div class="mark">”</div>'+esc(v.text)+(v.source?'<div class="src">— '+esc(v.source)+'</div>':'')+'</div>';
+      default: return '';
+    }
+  }
+  function vtitle(t){return t?'<div class="vtitle"><i></i>'+esc(t)+'</div>':'';}
+  function col(c,cls){if(!c)return '<div class="col"></div>';return '<div class="col '+cls+'"><h4>'+esc(c.title)+'</h4>'+(c.points||[]).map(function(p){return '<p><span>•</span><span>'+esc(p)+'</span></p>';}).join('')+'</div>';}
+
+  function enhance(root){ // count-up numbers
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),start=null,dur=900;
+      function tick(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);el.textContent=Math.round(p*target);if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // build steps
+  var stepsEl=document.getElementById('steps');
+  E.sections.forEach(function(s,i){
+    var d=document.createElement('div');d.className='step';d.dataset.idx=i;
+    d.innerHTML='<div class="card">'+esc(s.prose)+(s.annotation?'<span class="anno">'+esc(s.annotation)+'</span>':'')+'</div>';
+    stepsEl.appendChild(d);
+  });
+
+  var gfx=document.getElementById('gfx'),cur=-1;
+  function setActive(i){
+    if(i===cur)return;cur=i;
+    document.querySelectorAll('.step').forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    gfx.innerHTML=render(E.sections[i].visual);enhance(gfx);
+  }
+  setActive(0);
+
+  if(window.scrollama){
+    var sc=scrollama();
+    sc.setup({step:'.step',offset:0.62}).onStepEnter(function(r){setActive(r.index);});
+    window.addEventListener('resize',sc.resize);
+  }
+
+  // poll
+  if(E.poll&&E.poll.question){
+    var p=document.getElementById('poll');p.hidden=false;
+    document.getElementById('poll-q').textContent=E.poll.question;
+    var opts=document.getElementById('poll-opts'),rev=document.getElementById('poll-reveal');
+    (E.poll.options||[]).forEach(function(o){
+      var b=document.createElement('button');b.textContent=o;
+      b.onclick=function(){opts.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');rev.textContent=E.poll.reveal||'';rev.classList.add('show');};
+      opts.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>
