@@ -94,6 +94,36 @@
   .card h2{font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.2;margin:0 0 10px}
   .card p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px}
   .card .go{margin-top:auto;font-weight:700;color:var(--teal)}
+  /* quiz */
+  .quiz{background:var(--paper);border-top:1px solid var(--line)}
+  .qhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:26px}
+  .qhead h2{font-weight:700;font-size:clamp(24px,3vw,32px);margin:0}
+  .qscore{margin-inline-start:auto;font-weight:700;font-size:15px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .qscore b{color:var(--teal);font-size:18px}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px}
+  .qq{font-weight:700;font-size:18px;line-height:1.45;margin-bottom:16px}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font-family:var(--font);font-size:16px;font-weight:600;text-align:right;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;
+    cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px}
+  .qopt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--ink-soft);flex:0 0 auto;opacity:.5}
+  .qopt:hover:not(:disabled){border-color:var(--teal);background:#fff}
+  .qopt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--teal);background:rgba(31,111,92,.12);color:#155}
+  .qopt.correct::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1;font-size:15px;text-align:center}
+  .qopt.wrong{border-color:#b4462f;background:rgba(180,70,47,.1);color:#8a2f1c}
+  .qopt.wrong::before{content:"✕";border:none;color:#b4462f;font-weight:900;opacity:1;font-size:14px;text-align:center}
+  .qopt.reveal::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1}
+  .qopt.reveal{border-color:var(--teal);color:#155}
+  .qfb{margin-top:14px;padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.55}
+  .qfb b{font-weight:700}
+  .qfb.ok{background:rgba(31,111,92,.1);color:#155}
+  .qfb.no{background:rgba(217,164,65,.14);color:#7a5a13}
+  .qdone{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--ink);color:var(--paper);
+    font-weight:700;font-size:18px;text-align:center;display:none}
+  .qdone.show{display:block}
   @media (max-width:760px){
     .grid{grid-template-columns:1fr;gap:36px}
     .short-col{position:static;max-width:360px}
@@ -148,6 +178,47 @@
     </div>
   </div>
 </div></section>
+
+<section class="quiz"><div class="wrap pad">
+  <p class="eyebrow2">בחן את עצמך</p>
+  <div class="qhead"><h2>10 שאלות על הפרק</h2><span class="qscore">ניקוד: <b id="qs">0</b> / <span id="qtot">0</span></span></div>
+  <div id="qlist"></div>
+  <div class="qdone" id="qdone"></div>
+</div></section>
+<script>window.EP_QUIZ = {"questions": [{"q": "מהי מדיניות ברירת המחדל של הממונה לגבי הכנסת החייב בתקופת הביניים?", "options": ["הכנסת החייב נכללת בנכסי קופת הנשייה והנאמן מעביר לחייב את דמי המחיה", "החייב מותיר בידיו את הכנסתו ומעביר תשלומים חודשיים לקופת הנשייה", "המעסיק מעביר את מלוא המשכורת ישירות לקופת הנשייה מיום מתן הצו", "בית המשפט קובע את גובה התשלומים כבר במסגרת הצו לפתיחת הליכים"], "correct": 1, "feedback": "מדיניות הממונה היא לפעול לפי החלופה שבסעיף 156(ב) לחוק: החייב מותיר בידיו את הכנסתו ומעביר תשלומים עתיים לקופת הנשייה בתקופת הביניים ועד מתן הצו לשיקום כלכלי. החלופה שבסעיף 156(א) שמורה למקרים חריגים."}, {"q": "על מה מבוסס ״הסכום הבסיסי״ שבטבלת הסכומים?", "options": ["שכר המינימום נטו במשק", "ההוצאה הממוצעת בפועל של משפחה לפי אומדנים סטטיסטיים", "קצבת נכות כללית לדרגת אי כושר יציבה בשיעור 75% ומעלה", "קצבת הבטחת הכנסה של המוסד לביטוח לאומי"], "correct": 2, "feedback": "לפי פסקה 12.1.2, הסכום הבסיסי מבוסס על קצבת נכות כללית לדרגת אי כושר יציבה בשיעור 75% ומעלה, שלפי הלכת לשצ'נקו נועדה להבטיח צורכי מחיה מינימליים. האומדנים הסטטיסטיים של מחשבון ועדת חריס נזנחו במכוון."}, {"q": "מהי התוספת לסכום הבסיסי עבור ילדי החייב שפרנסתם עליו?", "options": ["1,500 ₪ לכל ילד עד ארבעה ילדים, ו-1,300 ₪ עבור הילד החמישי ואילך", "1,300 ₪ לכל ילד עד ארבעה ילדים, ו-1,500 ₪ עבור הילד החמישי ואילך", "1,500 ₪ לכל ילד ללא הגבלה במספר הילדים", "1,000 ₪ לכל ילד, בכפוף לשיקול דעת הממונה"], "correct": 0, "feedback": "לפי פסקה 12.1.2 ונספח א, מוסיפים 1,500 ₪ לכל ילד עד ארבעה ילדים ו-1,300 ₪ מהילד החמישי ואילך. הפחתת הסכום מהילד החמישי משקפת את הקטנת ההוצאה לנפש ככל שמספר הנפשות גדל."}, {"q": "חייב מבקש להפחית מההכנסה נטו של התא המשפחתי הוצאה כהוצאה מיוחדת. איזו מהבאות אינה מוכרת להפחתה?", "options": ["תרופות חיוניות שאינן מכוסות בסל הבריאות ובביטוח המשלים", "נסיעות לעבודה בתחבורה ציבורית", "צהרון לילד בכיתה ב בעלות של עד 1,000 ₪", "שכר דירה עבור דירת מגוריו של החייב"], "correct": 3, "feedback": "לפי סעיף 18 לנוהל, הסכום הבסיסי כבר מגלם הוצאות מגורים כגון שכירות או משכנתא, ולכן אין להפחיתן פעם נוספת כהוצאה מיוחדת. שאר ההוצאות מנויות בפסקה 15.4 וניתנות להפחתה כנגד אסמכתאות."}, {"q": "הכנסתו נטו של החייב מהווה 75% מההכנסה נטו של התא המשפחתי. מהו התשלום החודשי שיוטל עליו?", "options": ["מחצית ממלוא ההכנסה הפנויה של התא המשפחתי", "75% ממחצית ההכנסה הפנויה של התא המשפחתי", "75% ממלוא ההכנסה הפנויה של התא המשפחתי", "מחצית מהכנסתו נטו של החייב בלבד"], "correct": 1, "feedback": "לפי פרק ה, התשלום החודשי הוא מחצית ההכנסה הפנויה של התא המשפחתי כשהיא מותאמת לחלקו היחסי של החייב בהכנסות: חייב שהכנסתו 75% מהכנסת התא ישלם 75% מתוך מחצית ההכנסה הפנויה."}, {"q": "מתי רשאי הממונה להותיר בידי החייב פחות ממחצית הכנסתו הפנויה?", "options": ["במקרים חריגים שבהם ההכנסה הפנויה גבוהה במיוחד, ובשים לב להתנהלות החייב בהליך", "לעולם לא - שיעור המחצית קבוע בחוק ואינו נתון לשיקול דעת", "בכל מקרה שבו הנושים דורשים זאת בכתב", "רק לאחר מתן הצו לשיקום כלכלי ובאישור בית המשפט בלבד"], "correct": 0, "feedback": "לפי פסקה 12.2.3, הותרת המחצית נתונה לשיקול דעת הממונה: במקרים חריגים של הכנסה פנויה גבוהה במיוחד יוותר בידי החייב שיעור נמוך מחמישים אחוז, ויינתן משקל גם להתנהלות החייב ולשקיפותו בהליך."}, {"q": "בן זוגו של החייב מצוי אף הוא בהליך חדלות פירעון. כיצד משפיע הדבר על חישוב התשלום החודשי של החייב?", "options": ["מחשבים כל תיק בנפרד ומתעלמים לחלוטין מהכנסות בן הזוג", "הכנסת בן הזוג מוצאת מהגדרת התא המשפחתי", "התשלום החודשי שהוטל על בן הזוג בהליך שלו מופחת מההכנסה הפנויה של התא המשפחתי", "החייב פטור מתשלומים עד לסיום הליך בן הזוג"], "correct": 2, "feedback": "לפי פסקה 16.2, החישוב נעשה לפי נוסחת החישוב הרגילה, אך התשלום החודשי שהוטל על בן הזוג במסגרת ההליך שלו מופחת מתוך ההכנסה הפנויה של התא המשפחתי, כדי למנוע חיוב כפול על אותה הכנסה."}, {"q": "ילדו של החייב מתגורר עמו במשמורת משותפת מלאה. כיצד יוקצה הסכום הבסיסי עבור הילד?", "options": ["מלוא הסכום שהוקצה עבורו - 1,500 ₪", "מחצית הסכום - 750 ₪, בהתאם לימי המגורים עם החייב", "הילד לא יובא בחשבון כלל שכן הוא מקבל מזונות", "סכום מופחת של 1,300 ₪"], "correct": 1, "feedback": "לפי פסקאות 17.1-17.2, הסכום הבסיסי לילד מוקצה באופן יחסי למספר הימים שבהם הוא מתגורר עם החייב, ולכן במשמורת משותפת מלאה מחושבת מחצית (750 ₪). בנוסף ישלם החייב מזונות לפי ההקצבה שנקבעה בסעיף 179 לחוק."}, {"q": "חייב אינו עובד ללא הצדק, אך עבד בשנה שקדמה לצו לפתיחת הליכים. איזו הכנסה תיוחס לו?", "options": ["לא ניתן לייחס לו הכנסה כל עוד אינו עובד בפועל", "שכר מינימום נטו בלבד, בכל מקרה", "ממוצע שכרו בשנה שקדמה לצו בלבד", "הגבוה מבין ממוצע שכרו בשנה שקדמה לצו או שכר מינימום נטו"], "correct": 3, "feedback": "לפי פסקה 19.5.3, לחייב שעבד בשנה שלפני מתן הצו תיוחס הכנסה לפי ממוצע שכרו באותה שנה או שכר מינימום נטו, לפי הגבוה מביניהם, אלא אם מתקיימות נסיבות המצדיקות את אי-עבודתו."}, {"q": "חייב אינו משלם את התשלומים החודשיים כסדרם. מהי הסמכות העומדת לרשות הממונה?", "options": ["לפנות לבית המשפט בבקשה לביטול ההליך באופן מיידי", "להטיל על החייב קנס בגובה התשלומים שבפיגור", "להורות לפי סעיף 156(א) שהכנסות החייב יהיו חלק מנכסי קופת הנשייה, כך שהמעסיק יעביר את המשכורת ישירות והנאמן יעביר את היתרה לחייב", "להכפיל את גובה התשלום החודשי עד לכיסוי הפיגורים"], "correct": 2, "feedback": "לפי פסקה 19.2.2, בנסיבות של אי-תשלום כסדרו רשאי הממונה להורות לפי סעיף 156(א) לחוק כי הכנסות החייב הן חלק מנכסי קופת הנשייה; במקרה זה המעסיק מעביר את המשכורת ישירות לקופה והנאמן מעביר את היתרה לחייב."}]};</script>
+<script>
+(function(){
+  var data=window.EP_QUIZ; if(!data||!data.questions||!data.questions.length)return;
+  var list=document.getElementById('qlist'),qsEl=document.getElementById('qs'),
+      qtotEl=document.getElementById('qtot'),doneEl=document.getElementById('qdone');
+  var total=data.questions.length; qtotEl.textContent=total;
+  var score=0,answered=0;
+  data.questions.forEach(function(q,qi){
+    var card=document.createElement('div'); card.className='qcard';
+    var h=document.createElement('div'); h.className='qq'; h.textContent=(qi+1)+'. '+q.q; card.appendChild(h);
+    var opts=document.createElement('div'); opts.className='qopts'; opts.setAttribute('role','group');
+    q.options.forEach(function(opt,oi){
+      var b=document.createElement('button'); b.type='button'; b.className='qopt'; b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(card.classList.contains('answered'))return;
+        card.classList.add('answered'); answered++;
+        var right=(oi===q.correct);
+        if(right){b.classList.add('correct');score++;}
+        else{b.classList.add('wrong'); if(opts.children[q.correct])opts.children[q.correct].classList.add('reveal');}
+        for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+        qsEl.textContent=score;
+        var fb=document.createElement('div'); fb.className='qfb '+(right?'ok':'no');
+        var strong=document.createElement('b'); strong.textContent=right?'נכון! ':'לא נכון. ';
+        fb.appendChild(strong); fb.appendChild(document.createTextNode(q.feedback||''));
+        card.appendChild(fb);
+        if(answered===total){doneEl.textContent='סיימת! '+score+' מתוך '+total+' תשובות נכונות.'; doneEl.classList.add('show');}
+      });
+      opts.appendChild(b);
+    });
+    card.appendChild(opts); list.appendChild(card);
+  });
+})();
+</script>
 <footer><div class="wrap"><span class="fmark">⚖ חדלות בגובה העיניים</span><span>נהלים ופסיקה בחדלות פירעון — לנאמנים, בגובה העיניים</span><span class="sp"><a href="https://nivsimon.space" rel="me">@nivsimon.space</a></span></div></footer>
 </body>
 </html>

@@ -94,6 +94,36 @@
   .card h2{font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.2;margin:0 0 10px}
   .card p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px}
   .card .go{margin-top:auto;font-weight:700;color:var(--teal)}
+  /* quiz */
+  .quiz{background:var(--paper);border-top:1px solid var(--line)}
+  .qhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:26px}
+  .qhead h2{font-weight:700;font-size:clamp(24px,3vw,32px);margin:0}
+  .qscore{margin-inline-start:auto;font-weight:700;font-size:15px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .qscore b{color:var(--teal);font-size:18px}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px}
+  .qq{font-weight:700;font-size:18px;line-height:1.45;margin-bottom:16px}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font-family:var(--font);font-size:16px;font-weight:600;text-align:right;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;
+    cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px}
+  .qopt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--ink-soft);flex:0 0 auto;opacity:.5}
+  .qopt:hover:not(:disabled){border-color:var(--teal);background:#fff}
+  .qopt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--teal);background:rgba(31,111,92,.12);color:#155}
+  .qopt.correct::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1;font-size:15px;text-align:center}
+  .qopt.wrong{border-color:#b4462f;background:rgba(180,70,47,.1);color:#8a2f1c}
+  .qopt.wrong::before{content:"✕";border:none;color:#b4462f;font-weight:900;opacity:1;font-size:14px;text-align:center}
+  .qopt.reveal::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1}
+  .qopt.reveal{border-color:var(--teal);color:#155}
+  .qfb{margin-top:14px;padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.55}
+  .qfb b{font-weight:700}
+  .qfb.ok{background:rgba(31,111,92,.1);color:#155}
+  .qfb.no{background:rgba(217,164,65,.14);color:#7a5a13}
+  .qdone{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--ink);color:var(--paper);
+    font-weight:700;font-size:18px;text-align:center;display:none}
+  .qdone.show{display:block}
   @media (max-width:760px){
     .grid{grid-template-columns:1fr;gap:36px}
     .short-col{position:static;max-width:360px}
@@ -148,6 +178,47 @@
     </div>
   </div>
 </div></section>
+
+<section class="quiz"><div class="wrap pad">
+  <p class="eyebrow2">בחן את עצמך</p>
+  <div class="qhead"><h2>10 שאלות על הפרק</h2><span class="qscore">ניקוד: <b id="qs">0</b> / <span id="qtot">0</span></span></div>
+  <div id="qlist"></div>
+  <div class="qdone" id="qdone"></div>
+</div></section>
+<script>window.EP_QUIZ = {"questions": [{"q": "אילו תקבולים מזכים את הנאמן בשכר ניהול לפי תקנה 7 לתקנות השכר?", "options": ["כל תקבול שנכנס לקופת הנשייה בתקופת כהונת הנאמן", "תקבולים שנוצרו ממכירת שירותי או מוצרי החברה במסגרת ההפעלה השוטפת של עסקיה", "תקבולים שמקורם בגביית חובות עבר של החברה", "תקבולים ממכירת נכסי החברה במהלך תקופת ההפעלה"], "correct": 1, "feedback": "שכר ניהול מחושב מדי שלושה חודשים אך ורק מתקבולי הכנסה שנבעו מההפעלה השוטפת של עסקי החברה. גביית חובות ומכירת נכסים הם תקבולי מימוש שאינם מזכים בשכר ניהול (פרק א, סעיף 1), למעט חריג של תקבול מכוח זכות הסכמית המותנית ברצף הפעלה."}, {"q": "כיצד מחושב שכר המימוש מתוך תמורת מכירת נכס?", "options": ["ממלוא התמורה ברוטו על פי שערוכה, ללא הפחתת הוצאות המימוש כגון פרסום ושמאות", "מהתמורה נטו לאחר הפחתת הוצאות המימוש", "מהתמורה החוזית, כולל רכיבים עתידיים שטרם שולמו", "מהתמורה בניכוי שכר בעלי המקצוע שסייעו במכירה"], "correct": 0, "feedback": "סעיף 4 לנוהל קובע כי שכר המימוש ייגזר ממלוא התמורה ברוטו על פי שערוכה, ללא הפחתת הוצאות המימוש. עם זאת, השכר משולם רק בגין תקבולים שנתקבלו בפועל בקופה - אין שכר בגין תקבולים עתידיים (עניין ״היפר דנטל״)."}, {"q": "איזו מהפעולות הבאות מזכה את הנאמן בשכר מימוש?", "options": ["ביטול או דחיית תביעת חוב של נושה לאחר בדיקתה", "הפחתת חובות החברה לרשויות המס", "תשלום דיבידנד רעיוני לנושה בדרך של קיזוז חוב נגדי של אותו נושה לחייב", "מניעת חילוט ערבות בנקאית של החברה"], "correct": 2, "feedback": "לפי עניין ״ברקן״ (סעיף 9), קיזוז חוב נגדי במקום גבייתו בפועל מהווה דיבידנד רעיוני המזכה בשכר מימוש. לעומת זאת, ביטול תביעות חוב (״פנתאון״), הפחתת חובות מס (״לייבורי״) ומניעת חילוט ערבויות (״אפיג הנדסה״) הן הכנסה רעיונית שאינה מזכה בשכר מימוש."}, {"q": "נאמן כיהן כמפרק זמני, מונה למנהל מיוחד עם מתן צו הפירוק ולבסוף למפרק קבוע. כיצד יחושב שכר המימוש שלו?", "options": ["בכל תואר יחושב השכר מחדש מהמדרגה הראשונה", "יחושב לפי התואר הבכיר ביותר בו כיהן", "יחושב מחדש רק אם חלפו למעלה משלוש שנים בין המינויים", "החישוב יימשך מן המדרגה אליה הגיע במועד חישוב שכרו האחרון, ללא חזרה למדרגות הראשוניות"], "correct": 3, "feedback": "סעיפים 10-11 לנוהל, בעקבות עניין ״גד אב״: החלפת תוארו של אותו נאמן אינה מחזירה אותו למדרגות החישוב הראשוניות, והשכר יחושב מהמדרגה אליה הגיע במועד חישוב שכרו האחרון."}, {"q": "נאמן מימש דירה המשותפת לחייב ולבת זוגו הסולבנטית. מה הכלל לעניין שכר הטרחה בגין חלקה של בת הזוג?", "options": ["הנאמן זכאי לשכר מימוש מלא מקופת ההליך בגין מלוא התמורה", "הנאמן אינו זכאי לשכר מקופת ההליך בגין חלק השותפה, אך ניתן לשקול שכר על חשבון השותפים, ורצוי בהסדרה מראש בבית המשפט", "הנאמן זכאי לשכר בגין חלק השותפה רק אם התנגדה למכירה", "חלק השותפה מזכה תמיד בשכר לפי התעריף המינימלי בלבד, מקופת ההליך"], "correct": 1, "feedback": "לפי עניין ״סטרוד״ (סעיף 12), שכר מחושב רק מתקבולים שנכנסו לקופה, ולכן אין שכר בגין חלקו של שותף סולבנטי. סעיף 13 מאפשר במקרים מתאימים שכר על חשבון השותפים - לפי התעריף המינימלי או במסלול מימוש בחלוקת מדרגות שווה - תוך הגשת בקשה מראש לבית המשפט."}, {"q": "כונס נכסים מימש נכס עבור נושה מובטח, ולא חולק כל דיבידנד לנושים הרגילים. מה דין שכר החלוקה?", "options": ["אין לפסוק שכר חלוקה", "ייפסק שכר חלוקה לפי שיעור הפירעון לנושה המובטח בלבד", "ייפסק שכר חלוקה מופחת בשיעור 75%", "ייפסק שכר חלוקה מלא, שכן בוצעה חלוקה בפועל"], "correct": 0, "feedback": "סעיף 24 לנוהל קובע במפורש כי מקום בו מומש נכס עבור נושה מובטח ולא חולק דיבידנד לנושים רגילים, אין לפסוק שכר חלוקה. שיעור החלוקה נקבע לפי החלוקה המשותפת בפועל לכלל הנושים (סעיף 16)."}, {"q": "באילו תנאים ניתן לפסוק לנאמן שכר שעתי?", "options": ["בכל מקרה בו הנאמן מבקש זאת, עד 500 ₪ לשעה", "כאשר היקף העבודה גדול במיוחד, ללא צורך באישור מוקדם", "רק במקרים חריגים בהם חישוב לפי התקנות ייצור עיוות משמעותי, עד 500 ₪ לשעה, בקביעה מראש של היקף השעות ובאישור מראש של מנהל המחוז או מנהל מחלקת תאגידים", "בכל תיק הפעלה, באישור בדיעבד של הממונה"], "correct": 2, "feedback": "פרק ד (סעיף 26): שכר שעתי הוא חריג שיישקל רק כאשר חישוב לפי התקנות יוצר עיוות משמעותי, בתקרה של 500 ₪ לשעה, בקביעה מראש של היקף השעות ובאישור מראש ממנהל המחוז או מנהל מחלקת תאגידים. שכר שעתי גבוה יותר טעון אישור הממונה או המשנה לה. מוקש נוסף: לצד שכר שעתי לא תשולם תוספת מאמץ מיוחד (״בית חולים הדסה״)."}, {"q": "תביעה שהגיש נאמן בערכאה חיצונית הסתיימה בפשרה לאחר הגשת תצהירי עדות ראשית וטרם הגשת סיכומים. מה שיעור שכר הטרחה המומלץ מתוך הכספים שיתקבלו בפועל?", "options": ["עד 10%", "בין 11% ל-13%", "בין 14% ל-16%", "בין 17% ל-19%"], "correct": 2, "feedback": "לפי המדרגות בפרק ה (סעיף 29): עד 10% בפשרה טרם הגשת התביעה, 11%-13% לאחר הגשה ועד תצהירי עדות ראשית, 14%-16% לאחר תצהירים וטרם סיכומים, ו-17%-19% בפסק דין לאחר סיכומים. יש לזכור כי השכר חייב להיות מוסדר מראש, בד בבד עם אישור הגשת התביעה (סעיף 30)."}, {"q": "נאמן מבקש להעסיק שמאי בעלות של 4,500 ₪ בצירוף מע״מ. מהו סדר האישור הנדרש?", "options": ["חובה להגיש בקשה למתן הוראות לבית המשפט טרם ההעסקה, בכל סכום", "מייצג הממונה רשאי לאשר בכתב ומראש ללא פנייה לבית המשפט, שכן העלות אינה עולה על 5,000 ₪ בצירוף מע״מ, ובלבד שהדבר יצוין בדו״ח הבא לבית המשפט", "הנאמן רשאי להעסיקו ללא כל אישור ולדווח בסוף ההליך", "נדרש אישור מנהל המחוז בלבד, בדיעבד"], "correct": 1, "feedback": "פרק יא: ככלל, העסקת בעל מקצוע טעונה בקשה למתן הוראות טרם ההעסקה (״רובננקו אחזקות״), אך כאשר העלות אינה עולה על 5,000 ₪ בצירוף מע״מ, רשאים מייצגי הממונה לאשרה בכתב ומראש ללא פנייה מקדימה לבית המשפט, בכפוף לציון הדבר בדו״ח הבא. יש לצרף לפחות 3 הצעות מחיר (סעיף 41)."}, {"q": "מה שיעור תוספת המאמץ המיוחד המרבי שרשאי מייצג הממונה להמליץ עליו כאשר פעולות הנאמן הביאו לגילוי נכסים שלא הוצהרו על ידי החייב?", "options": ["עד 10% מהשכר המחושב", "עד 20%", "עד 25% בלבד, ללא חריגים", "עד 50%"], "correct": 3, "feedback": "סעיף 47: בגילוי נכסים לא מוצהרים שדרש פעולות איתור מיוחדות ומאומצות, זכאי הנאמן לתוספת של עד 50%. זאת לעומת הכלל הרגיל של עד 25% (סעיף 46), שחריגה ממנו טעונה אישור מנהל המחוז. הבקשה תיבחן ככלל רק בסיום העבודה, בבקשה נפרדת ומנומקת (עניין ״התחנה המרכזית״)."}]};</script>
+<script>
+(function(){
+  var data=window.EP_QUIZ; if(!data||!data.questions||!data.questions.length)return;
+  var list=document.getElementById('qlist'),qsEl=document.getElementById('qs'),
+      qtotEl=document.getElementById('qtot'),doneEl=document.getElementById('qdone');
+  var total=data.questions.length; qtotEl.textContent=total;
+  var score=0,answered=0;
+  data.questions.forEach(function(q,qi){
+    var card=document.createElement('div'); card.className='qcard';
+    var h=document.createElement('div'); h.className='qq'; h.textContent=(qi+1)+'. '+q.q; card.appendChild(h);
+    var opts=document.createElement('div'); opts.className='qopts'; opts.setAttribute('role','group');
+    q.options.forEach(function(opt,oi){
+      var b=document.createElement('button'); b.type='button'; b.className='qopt'; b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(card.classList.contains('answered'))return;
+        card.classList.add('answered'); answered++;
+        var right=(oi===q.correct);
+        if(right){b.classList.add('correct');score++;}
+        else{b.classList.add('wrong'); if(opts.children[q.correct])opts.children[q.correct].classList.add('reveal');}
+        for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+        qsEl.textContent=score;
+        var fb=document.createElement('div'); fb.className='qfb '+(right?'ok':'no');
+        var strong=document.createElement('b'); strong.textContent=right?'נכון! ':'לא נכון. ';
+        fb.appendChild(strong); fb.appendChild(document.createTextNode(q.feedback||''));
+        card.appendChild(fb);
+        if(answered===total){doneEl.textContent='סיימת! '+score+' מתוך '+total+' תשובות נכונות.'; doneEl.classList.add('show');}
+      });
+      opts.appendChild(b);
+    });
+    card.appendChild(opts); list.appendChild(card);
+  });
+})();
+</script>
 <footer><div class="wrap"><span class="fmark">⚖ חדלות בגובה העיניים</span><span>נהלים ופסיקה בחדלות פירעון — לנאמנים, בגובה העיניים</span><span class="sp"><a href="https://nivsimon.space" rel="me">@nivsimon.space</a></span></div></footer>
 </body>
 </html>

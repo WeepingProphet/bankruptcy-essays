@@ -131,6 +131,36 @@ CSS = """
   .card h2{font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.2;margin:0 0 10px}
   .card p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px}
   .card .go{margin-top:auto;font-weight:700;color:var(--teal)}
+  /* quiz */
+  .quiz{background:var(--paper);border-top:1px solid var(--line)}
+  .qhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:26px}
+  .qhead h2{font-weight:700;font-size:clamp(24px,3vw,32px);margin:0}
+  .qscore{margin-inline-start:auto;font-weight:700;font-size:15px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .qscore b{color:var(--teal);font-size:18px}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px}
+  .qq{font-weight:700;font-size:18px;line-height:1.45;margin-bottom:16px}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font-family:var(--font);font-size:16px;font-weight:600;text-align:right;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;
+    cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px}
+  .qopt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--ink-soft);flex:0 0 auto;opacity:.5}
+  .qopt:hover:not(:disabled){border-color:var(--teal);background:#fff}
+  .qopt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--teal);background:rgba(31,111,92,.12);color:#155}
+  .qopt.correct::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1;font-size:15px;text-align:center}
+  .qopt.wrong{border-color:#b4462f;background:rgba(180,70,47,.1);color:#8a2f1c}
+  .qopt.wrong::before{content:"✕";border:none;color:#b4462f;font-weight:900;opacity:1;font-size:14px;text-align:center}
+  .qopt.reveal::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1}
+  .qopt.reveal{border-color:var(--teal);color:#155}
+  .qfb{margin-top:14px;padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.55}
+  .qfb b{font-weight:700}
+  .qfb.ok{background:rgba(31,111,92,.1);color:#155}
+  .qfb.no{background:rgba(217,164,65,.14);color:#7a5a13}
+  .qdone{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--ink);color:var(--paper);
+    font-weight:700;font-size:18px;text-align:center;display:none}
+  .qdone.show{display:block}
   @media (max-width:760px){
     .grid{grid-template-columns:1fr;gap:36px}
     .short-col{position:static;max-width:360px}
@@ -154,6 +184,67 @@ FOOTER = ('<footer><div class="wrap">'
           '<span>נהלים ופסיקה בחדלות פירעון — לנאמנים, בגובה העיניים</span>'
           '<span class="sp"><a href="https://nivsimon.space" rel="me">@nivsimon.space</a></span>'
           '</div></footer>\n</body>\n</html>\n')
+
+QUIZ_JS = """<script>
+(function(){
+  var data=window.EP_QUIZ; if(!data||!data.questions||!data.questions.length)return;
+  var list=document.getElementById('qlist'),qsEl=document.getElementById('qs'),
+      qtotEl=document.getElementById('qtot'),doneEl=document.getElementById('qdone');
+  var total=data.questions.length; qtotEl.textContent=total;
+  var score=0,answered=0;
+  data.questions.forEach(function(q,qi){
+    var card=document.createElement('div'); card.className='qcard';
+    var h=document.createElement('div'); h.className='qq'; h.textContent=(qi+1)+'. '+q.q; card.appendChild(h);
+    var opts=document.createElement('div'); opts.className='qopts'; opts.setAttribute('role','group');
+    q.options.forEach(function(opt,oi){
+      var b=document.createElement('button'); b.type='button'; b.className='qopt'; b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(card.classList.contains('answered'))return;
+        card.classList.add('answered'); answered++;
+        var right=(oi===q.correct);
+        if(right){b.classList.add('correct');score++;}
+        else{b.classList.add('wrong'); if(opts.children[q.correct])opts.children[q.correct].classList.add('reveal');}
+        for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+        qsEl.textContent=score;
+        var fb=document.createElement('div'); fb.className='qfb '+(right?'ok':'no');
+        var strong=document.createElement('b'); strong.textContent=right?'נכון! ':'לא נכון. ';
+        fb.appendChild(strong); fb.appendChild(document.createTextNode(q.feedback||''));
+        card.appendChild(fb);
+        if(answered===total){doneEl.textContent='סיימת! '+score+' מתוך '+total+' תשובות נכונות.'; doneEl.classList.add('show');}
+      });
+      opts.appendChild(b);
+    });
+    card.appendChild(opts); list.appendChild(card);
+  });
+})();
+</script>
+"""
+
+def load_quiz(slug):
+    import json
+    p = SITE / "ep" / slug / "quiz.json"
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+def quiz_block(slug):
+    import json
+    q = load_quiz(slug)
+    if not q or not q.get("questions"):
+        return ""
+    data = json.dumps(q, ensure_ascii=False).replace("</", "<\\/")
+    section = ('\n<section class="quiz"><div class="wrap pad">\n'
+               '  <p class="eyebrow2">בחן את עצמך</p>\n'
+               '  <div class="qhead"><h2>' + str(len(q["questions"])) + ' שאלות על הפרק</h2>'
+               '<span class="qscore">ניקוד: <b id="qs">0</b> / <span id="qtot">0</span></span></div>\n'
+               '  <div id="qlist"></div>\n'
+               '  <div class="qdone" id="qdone"></div>\n'
+               '</div></section>\n'
+               '<script>window.EP_QUIZ = ' + data + ';</script>\n' + QUIZ_JS)
+    return section
 
 def episode_page(ep):
     chips = "".join(f'<span class="chip{" on" if i==0 and ep["chips"][0][0]!="נ" else ""}">{esc(c)}</span>'
@@ -202,7 +293,7 @@ def episode_page(ep):
     </div>
   </div>
 </div></section>
-""" + FOOTER
+""" + quiz_block(ep["slug"]) + FOOTER
 
 def homepage():
     cards = ""
