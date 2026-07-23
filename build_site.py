@@ -313,9 +313,9 @@ def episode_page(ep):
 </div></section>
 """ + quiz_block(ep["slug"]) + FOOTER
 
-def homepage():
+def homepage(episodes):
     cards = ""
-    for ep in EPISODES:
+    for ep in episodes:
         cards += f"""<a class="card" href="ep/{esc(ep['slug'])}/">
       <span class="cnum">{esc(ep['num'])}</span>
       <span class="ckick">{esc(ep['kicker'])}</span>
@@ -341,13 +341,67 @@ def homepage():
 </div></section>
 """ + FOOTER
 
+# Episodes registered for auto-generation: their card is derived from the
+# episode's own essay.json + description.md (copied into ep/<slug>/), so no
+# hand-authored blurb is needed. Loaded from auto.json — a list of [num, slug].
+def _load_auto():
+    import json as _json
+    f = SITE / "auto.json"
+    if not f.exists():
+        return []
+    return [tuple(x) for x in _json.loads(f.read_text(encoding="utf-8"))]
+AUTO = _load_auto()
+
+_NUM_RE = __import__("re").compile(r"[0-9][0-9.,]*")
+
+def auto_episode(num, slug):
+    """Build an EPISODES-shaped dict from ep/<slug>/essay.json + description.md."""
+    import json as _json
+    d = SITE / "ep" / slug
+    ej = _json.loads((d / "essay.json").read_text(encoding="utf-8"))
+    title = (ej.get("title") or slug).strip()
+    dek = (ej.get("dek") or "").strip()
+    hook = ej.get("hook") or {}
+    hookval = (hook.get("value") or "").strip()
+    hooklbl = (hook.get("label") or "").strip()
+    m = _NUM_RE.search(hookval)
+    glyph = m.group(0) if (m and len(m.group(0)) <= 6) else "§"
+    # body: the first substantial paragraph of description.md (skip title + emoji-meta lines)
+    body = dek
+    dp = d / "description.md"
+    if dp.exists():
+        for ln in dp.read_text(encoding="utf-8").splitlines():
+            s = ln.strip()
+            if len(s) > 90 and not s.startswith("#"):
+                body = s
+                break
+    # chips: up to two metadata values + a duration estimate
+    chips = []
+    for mth in (ej.get("meta") or []):
+        for v in (mth.get("values") or []):
+            if v and v.strip():
+                chips.append(v.strip())
+    chips = chips[:2] + ["≈ 8 דקות"]
+    lede = hooklbl if (hooklbl and len(hooklbl) <= 170) else dek
+    return {
+        "num": num, "slug": slug, "kicker": "נוהל · הממונה",
+        "title": title, "dek": dek, "chips": chips,
+        "lede": lede, "body": body, "glyph": glyph,
+        "essay_title": "הנקודות המרכזיות של הנוהל — בגלילה אחת",
+    }
+
+def all_episodes():
+    eps = list(EPISODES) + [auto_episode(n, s) for (n, s) in AUTO]
+    return sorted(eps, key=lambda e: int(e["num"]), reverse=True)
+
 def main():
-    (SITE / "index.html").write_text(homepage(), encoding="utf-8")
-    for ep in EPISODES:
+    eps = all_episodes()
+    (SITE / "index.html").write_text(homepage(eps), encoding="utf-8")
+    for ep in eps:
         d = SITE / "ep" / ep["slug"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(episode_page(ep), encoding="utf-8")
-    print(f"built homepage + {len(EPISODES)} episode pages")
+    print(f"built homepage + {len(eps)} episode pages")
 
 if __name__ == "__main__":
     main()
