@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>הפטר לפני שהכסף בקופה · חדלות בגובה העיניים</title>
+<meta name="description" content="הנחיית הממונה מנתקת את אישור ההפטר מזקיפת התשלום האחרון בכרטיס חיוב — אבל משאירה לנאמן חובת בדיקה אחת שאסור לדלג עליה. איפה עובר הגבול, ואיפה המוקש?" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1512; --ink2:#1f1917; --bone:#f2efe7; --oxblood:#1f6f5c;
+    --omer:#d9a441; --maya:#5c8fb3; --muted:#b8afa4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:Alef,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:var(--maya)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+  /* ---- hero ---- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:60px 22px;overflow:hidden}
+  .hero .kicker{color:var(--oxblood);font-weight:800;letter-spacing:6px;font-size:16px}
+  .hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;margin:14px 0 10px;max-width:14ch}
+  .hero .dek{color:var(--muted);font-size:clamp(18px,3.4vw,26px);max-width:30ch;margin:0 auto}
+  .hook{margin-top:46px}
+  .hook .val{font-size:clamp(90px,26vw,220px);font-weight:900;line-height:.9;color:var(--bone);
+    text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hook .lbl{color:var(--muted);font-size:clamp(16px,3.6vw,22px);max-width:24ch;margin:14px auto 0}
+  .scrollcue{position:absolute;bottom:26px;color:var(--muted);font-size:15px;letter-spacing:2px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  .courthouse{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.06;z-index:-1}
+  .courthouse svg{width:min(760px,90vw)}
+
+  /* ---- scrolly ---- */
+  .scrolly{position:relative}
+  .scrolly__graphic{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px 0}
+  .gfx{width:100%;max-width:720px;max-height:66vh;overflow:hidden}
+  .scrolly__steps{position:relative;margin-top:-100vh;z-index:2}
+  .step{min-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding:0 18px 5vh}
+  .step .card{background:rgba(17,13,13,.82);backdrop-filter:blur(7px);
+    border:1px solid rgba(122,31,31,.55);border-radius:20px;padding:22px 26px;max-width:560px;
+    font-size:clamp(19px,3.4vw,25px);font-weight:600;transition:opacity .4s, transform .4s;opacity:.35;transform:translateY(10px)}
+  .step.active .card{opacity:1;transform:none;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .anno{display:block;margin-top:10px;color:var(--omer);font-size:16px;font-weight:700}
+
+  /* ---- visual components ---- */
+  .vpanel{background:linear-gradient(180deg,#241c1a,#181312);border:2px solid var(--oxblood);
+    border-radius:26px;padding:28px 30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vtitle{display:flex;align-items:center;gap:10px;color:var(--oxblood);font-weight:800;font-size:26px;margin-bottom:18px}
+  .vtitle i{width:12px;height:12px;background:var(--oxblood);border-radius:3px;display:inline-block}
+  .gv-item{animation:fadeUp .6s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .tl-row{display:flex;gap:16px;margin-bottom:14px}
+  .tl-dot{width:22px;height:22px;border-radius:50%;background:var(--oxblood);flex:0 0 auto;margin-top:4px;box-shadow:0 0 0 5px var(--ink)}
+  .tl-date{color:var(--omer);font-weight:800;font-size:22px}
+  .tl-label{color:var(--bone);font-weight:600;font-size:23px}
+
+  .bar-row{margin-bottom:14px}
+  .bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:23px;margin-bottom:5px}
+  .bar-track{height:22px;background:rgba(243,239,232,.12);border-radius:7px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;width:0;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
+
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 26px;text-align:center}
+  .stat{flex:0 1 200px;min-width:0}
+  .stat .val{font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.15;white-space:nowrap}
+  .stat .lbl{color:var(--muted);font-size:18px;margin-top:6px;line-height:1.3}
+
+  .cols{display:flex;gap:20px}
+  .col{flex:1}
+  .col h4{font-size:22px;font-weight:800;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid}
+  .col.r h4{color:var(--maya);border-color:var(--maya)}
+  .col.l h4{color:var(--omer);border-color:var(--omer)}
+  .col p{margin:0 0 8px;font-size:20px;display:flex;gap:6px}
+  .divider{width:2px;background:rgba(243,239,232,.15)}
+
+  .judge{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .judge .d{width:15px;height:15px;border-radius:50%;flex:0 0 auto}
+  .judge .n{font-weight:800;font-size:23px;min-width:150px}
+  .judge .s{color:var(--muted);font-size:20px}
+
+  .verdict{text-align:center;padding:14px 0}
+  .verdict .lbl{color:var(--oxblood);font-weight:700;letter-spacing:2px;font-size:22px}
+  .verdict .val{font-size:clamp(44px,10vw,80px);font-weight:900;margin:8px 0}
+  .verdict .sub{color:var(--muted);font-size:22px}
+
+  .quote{font-size:clamp(24px,4.6vw,36px);font-weight:700;line-height:1.35}
+  .quote .mark{color:var(--oxblood);font-size:80px;line-height:.4;height:34px;font-weight:900}
+  .quote .src{color:var(--maya);font-weight:700;font-size:22px;margin-top:14px}
+
+  .hero-v{text-align:center}
+  .hero-v .val{font-size:clamp(70px,20vw,180px);font-weight:900;line-height:.9}
+  .hero-v .lbl{color:var(--muted);font-size:22px;margin-top:12px}
+
+  /* ---- poll ---- */
+  .poll{padding:90px 22px;text-align:center}
+  .poll h3{font-size:clamp(26px,5vw,40px);font-weight:900;margin:0 0 26px}
+  .poll .opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .poll button{background:transparent;border:2px solid var(--oxblood);color:var(--bone);
+    font-family:inherit;font-size:22px;font-weight:800;padding:16px 34px;border-radius:999px;cursor:pointer;transition:.2s}
+  .poll button:hover{background:var(--oxblood)}
+  .poll button.sel{background:var(--oxblood)}
+  .poll .reveal{max-width:34ch;margin:28px auto 0;color:var(--bone);font-size:22px;
+    opacity:0;transform:translateY(10px);transition:.5s}
+  .poll .reveal.show{opacity:1;transform:none}
+
+  /* ---- footer ---- */
+  .foot{border-top:1px solid rgba(243,239,232,.14);padding:60px 22px;text-align:center;color:var(--muted)}
+  .foot .cases{font-size:16px;line-height:1.9}
+  .foot .judges{font-size:16px;margin-top:14px}
+  .foot .brand{color:var(--oxblood);font-weight:800;letter-spacing:4px;margin-top:30px;font-size:20px}
+  .foot a{display:inline-block;margin-top:16px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .step .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="courthouse" aria-hidden="true">
+  <svg viewBox="0 0 200 160" fill="none" stroke="#f3efe8" stroke-width="2">
+    <polygon points="15,62 100,14 185,62"/><rect x="18" y="64" width="164" height="10"/>
+    <rect x="28" y="78" width="16" height="60" rx="2"/><rect x="60" y="78" width="16" height="60" rx="2"/>
+    <rect x="92" y="78" width="16" height="60" rx="2"/><rect x="124" y="78" width="16" height="60" rx="2"/>
+    <rect x="156" y="78" width="16" height="60" rx="2"/><rect x="14" y="140" width="172" height="12"/>
+  </svg>
+</div>
+
+<header class="hero">
+  <div class="kicker">חדלות בגובה העיניים</div>
+  <h1 id="h-title"></h1>
+  <p class="dek" id="h-dek"></p>
+  <div class="hook"><div class="val" id="h-val"></div><div class="lbl" id="h-lbl"></div></div>
+  <div class="scrollcue">גללו למטה ↓</div>
+</header>
+
+<section class="scrolly">
+  <div class="scrolly__graphic"><div class="gfx" id="gfx"></div></div>
+  <div class="scrolly__steps" id="steps"></div>
+</section>
+
+<section class="poll" id="poll" hidden>
+  <h3 id="poll-q"></h3>
+  <div class="opts" id="poll-opts"></div>
+  <p class="reveal" id="poll-reveal"></p>
+</section>
+
+<footer class="foot">
+  <div class="meta" id="f-meta"></div>
+  <div class="brand">חדלות בגובה העיניים</div>
+  <a href="" target="_blank" rel="noopener">להאזנה לפרק המלא →</a>
+</footer>
+
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+window.ESSAY = {"title": "הפטר לפני שהכסף בקופה", "dek": "הנחיית הממונה מנתקת את אישור ההפטר מזקיפת התשלום האחרון בכרטיס חיוב — אבל משאירה לנאמן חובת בדיקה אחת שאסור לדלג עליה. איפה עובר הגבול, ואיפה המוקש?", "hook": {"value": "₪10,000", "label": "התקרה שמתחתיה יינתן אישור הפטר עוד לפני שהתשלום האחרון נזקף לקופת הנשייה"}, "sections": [{"prose": "חייב מסיים תכנית תשלומים בת שנים. את התשלום האחרון הוא מבצע בכרטיס חיוב — והכסף, כדרכן של עסקאות סליקה, מגיע לקופת הנשייה רק כעבור ימים. עד ההנחיה, אישור ההפטר חיכה יחד איתו.", "visual": {"type": "timeline", "title": "המסלול לפני ההנחיה", "events": [{"date": "יום 0", "label": "התשלום האחרון מבוצע בכרטיס חיוב"}, {"date": "ימים לאחר מכן", "label": "הסליקה מושלמת והכסף נזקף לקופת הנשייה"}, {"date": "רק אז", "label": "הממונה מוציא אישור על מתן הפטר לפי סעיף 174(ג)"}]}, "annotation": "עיכוב טכני של סליקה תרגם את עצמו לעיכוב מהותי ביציאת החייב לחירות כלכלית."}, {"prose": "ההנחיה הופכת את הסדר: הוכחת התשלום מחליפה את הזקיפה בפועל. חייב שצירף לבקשת ההפטר אישור על ביצוע התשלום, בפירוט כרטיס החיוב שבו בוצע — יקבל אישור הפטר אף שהכסף טרם נכנס לקופה.", "visual": {"type": "contrast", "title": "מה השתנה", "left": {"title": "לפני ההנחיה", "points": ["אישור הפטר רק לאחר שמלוא התשלומים נזקפו לקופת הנשייה", "זמן הסליקה של חברת האשראי מעכב את החייב", "בדיקת העמידה בחובות נשענת על יתרת הקופה בלבד"]}, "right": {"title": "לפי ההנחיה", "points": ["אישור הפטר על יסוד אסמכתת תשלום בפירוט כרטיס החיוב", "הזקיפה לקופה מושלמת בדיעבד", "בכפוף לכך שהחייב עמד ביתר חובותיו בהליך"]}}, "annotation": "התנאי המהותי לא זז: עמידה בכלל החובות בהליך. רק עיתוי האישור הוקדם."}, {"prose": "ההקלה תחומה בתקרה: התשלום האחרון בכרטיס חיוב אינו עולה על 10,000 ש״ח — והסכום נבחן במצטבר, גם כשהתשלום פוצל לכמה עסקאות או כמה כרטיסים.", "visual": {"type": "stats", "items": [{"value": "₪10,000", "label": "הסכום המקסימלי לתשלום אחרון בכרטיס חיוב"}, {"value": "במצטבר", "label": "פיצול למספר עסקאות או כרטיסים נספר כסכום אחד"}, {"value": "₪20,000", "label": "בדוגמת ההנחיה: פוצל לשלושה כרטיסים — ומחוץ לתחולה"}]}, "annotation": "פיצול תשלום אינו דרך לעקוף את התקרה. מעל ₪10,000 חוזרים לכלל הישן: אישור רק לאחר זקיפה בפועל."}, {"prose": "מנקודת המבט של הנאמן, סעיף 8 הוא לב ההנחיה: לפני יצירת הוראת תשלום בתיק, על הנאמן לוודא שמלוא הכספים — ובראשם התשלום האחרון בכרטיס החיוב — כבר נזקפו בפועל לקופת הנשייה.", "visual": {"type": "quote", "text": "בטרם יצירת הוראת תשלום בתיק על הנאמן לבדוק שמלוא הכספים והתשלומים שהיו אמורים להכנס לקופת הנשיה אכן הועברו אליה, ובכלל זה שהתשלום האחרון שבוצע בכרטיס חיוב נזקף כבר לקופת הנשייה של התיק הרלוונטי", "source": "סעיף 8 להנחיית הממונה"}, "annotation": "המוקש: אישור ההפטר כבר אינו ראיה לכך שהכסף בקופה. חלוקה על סמך האישור בלבד עלולה להתבצע מקופה חסרה."}, {"prose": "נוצר פער מכוון בין שני מסלולים מקבילים: החייב מקבל את אישורו מוקדם, אך הנאמן ממשיך לפעול לפי המצב הכספי בפועל. שני שעונים שונים על אותו תיק.", "visual": {"type": "contrast", "title": "שני שעונים על אותו תיק", "left": {"title": "השעון של החייב", "points": ["אסמכתת תשלום מספיקה", "אישור הפטר יוצא מיד", "העיכוב הטכני מנוטרל"]}, "right": {"title": "השעון של הנאמן", "points": ["רק זקיפה בפועל לקופת הנשייה", "הוראת תשלום — לא לפני בדיקת מלוא הכספים", "האישור שבידי החייב אינו תחליף לבדיקה"]}}, "annotation": "ההנחיה מיטיבה עם החייב בלי להעביר את סיכון הסליקה אל הנושים — הסיכון נבלם אצל הנאמן."}, {"prose": "בהליכי פשיטת רגל הסמכות ליתן הפטר נתונה לבית המשפט, לא לממונה. שם הכונס הרשמי מתחייב שלא להתנגד לבקשת הפטר מן הטעם הזה בלבד — שהתשלום האחרון העומד בתנאי ההנחיה טרם נזקף לקופה.", "visual": {"type": "contrast", "title": "חדלות פירעון מול פשיטת רגל", "left": {"title": "הליך לפי חוק חדלות פירעון", "points": ["הממונה מוסמך ליתן את אישור ההפטר", "האישור יוצא ישירות מכוח ההנחיה"]}, "right": {"title": "הליך פשיטת רגל", "points": ["ההפטר בסמכות בית המשפט", "הכונס הרשמי לא יתנגד מטעם אי־הזקיפה בלבד", "טענות אחרות נגד הבקשה נשמרות במלואן"]}}, "annotation": "ההתחייבות של הכונ״ר צרה ומדויקת: היעדר התנגדות מנימוק אחד — לא ויתור על יתר הטענות."}, {"prose": "ההנחיה נולדה כפיילוט של חצי שנה — ובסיומו הוחלט שהיא נשארת, עד להוראה אחרת מטעם הממונה.", "visual": {"type": "verdict", "label": "סטטוס ההנחיה", "value": "בתוקף קבוע", "sub": "לאחר פיילוט של שישה חודשים — תמשיך לחול עד להוראה אחרת מטעם הממונה"}, "annotation": "נקודת המעקב לנאמנים: הוראה אחרת מטעם הממונה עשויה לשנות את התקרה או את התנאים — שווה בדיקה תקופתית."}], "poll": {"question": "חייב מציג לכם אישור הפטר חתום מהממונה. האם ניתן ליצור הוראת תשלום בתיק על סמך האישור בלבד?", "options": ["כן — אישור הממונה מעיד שהכול שולם", "לא — חובה לוודא תחילה שהתשלום האחרון נזקף בפועל לקופה"], "reveal": "לא. לפי סעיף 8 להנחיה, אישור ההפטר עשוי להינתן לפני שהתשלום האחרון בכרטיס חיוב נזקף לקופת הנשייה — ולכן על הנאמן לוודא זקיפה בפועל של מלוא הכספים בטרם יצירת הוראת תשלום."}, "method": "מבוסס על הנחיית הממונה על הליכי חדלות פירעון ושיקום כלכלי בנוגע לאישור הפטר לחייב לאחר ביצוע תשלום אחרון באמצעות כרטיס חיוב, מכוח סעיף 174 לחוק חדלות פירעון ושיקום כלכלי, התשע״ח-2018. ״כרטיס חיוב״ — כהגדרתו בסעיף 11ב לחוק הבנקאות (רישוי), התשמ״א-1981. הסכומים, הדוגמאות ותקופת הפיילוט לקוחים מלשון ההנחיה עצמה.", "meta": [{"label": "סעיפי חוק", "emoji": "⚖️", "values": ["סעיף 174", "סעיף 11"]}]};
+(function(){
+  var E = window.ESSAY, esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;};
+
+  // hero + footer
+  document.getElementById('h-title').textContent = E.title||'';
+  document.getElementById('h-dek').textContent = E.dek||'';
+  if(E.hook){document.getElementById('h-val').textContent=E.hook.value||'';document.getElementById('h-lbl').textContent=E.hook.label||'';}
+  if(E.meta&&E.meta.length){document.getElementById('f-meta').innerHTML=E.meta.map(function(m){
+    return '<div>'+esc((m.emoji||'')+' '+(m.label?m.label+': ':'')+(m.values||[]).join(' · '))+'</div>';}).join('');}
+
+  // ---- visual renderers ----
+  function di(i){return 'style="animation-delay:'+(i*0.08)+'s"';}
+  function render(v){
+    if(!v) return '';
+    switch(v.type){
+      case 'hero': return '<div class="vpanel hero-v"><div class="val">'+esc(v.value)+'</div><div class="lbl">'+esc(v.label)+'</div></div>';
+      case 'timeline': return '<div class="vpanel">'+vtitle(v.title)+ (v.events||[]).map(function(e,i){
+        return '<div class="tl-row gv-item" '+di(i)+'><span class="tl-dot"></span><div><div class="tl-date">'+esc(e.date)+'</div><div class="tl-label">'+esc(e.label)+'</div></div></div>';}).join('')+'</div>';
+      case 'voteCompare': {
+        var max=1;(v.rounds||[]).forEach(function(r){(r.results||[]).forEach(function(x){if(x.votes>max)max=x.votes;});});
+        return '<div class="vpanel">'+vtitle(v.title)+(v.rounds||[]).map(function(r){
+          var win=Math.max.apply(null,(r.results||[]).map(function(x){return x.votes;}));
+          return '<div class="round-name">'+esc(r.name)+'</div>'+(r.results||[]).map(function(x){
+            var w=Math.round(x.votes/max*100);var c=x.votes===win?'var(--oxblood)':'rgba(217,105,79,.5)';
+            return '<div class="bar-row"><div class="bar-head"><span>'+esc(x.name)+'</span><span data-count="'+x.votes+'">0</span></div><div class="bar-track"><div class="bar-fill" style="--w:'+w+'%;background:'+c+'"></div></div></div>';
+          }).join('');}).join('')+'</div>';
+      }
+      case 'stats': return '<div class="vpanel"><div class="stats">'+(v.items||[]).map(function(it,i){
+        var n=/^\d+$/.test(String(it.value));
+        return '<div class="stat gv-item" '+di(i)+'><div class="val" '+(n?'data-count="'+it.value+'"':'')+'>'+(n?'0':esc(it.value))+'</div><div class="lbl">'+esc(it.label)+'</div></div>';}).join('')+'</div></div>';
+      case 'contrast': return '<div class="vpanel"><div class="cols">'+col(v.right,'r')+'<div class="divider"></div>'+col(v.left,'l')+'</div></div>';
+      case 'judges': return '<div class="vpanel">'+vtitle(v.title)+(v.judges||[]).map(function(j,i){
+        return '<div class="judge gv-item" '+di(i)+'><span class="d" style="background:'+(i===0?'var(--oxblood)':'var(--omer)')+'"></span><span class="n">'+esc(j.name)+'</span><span class="s">'+esc(j.stance)+'</span></div>';}).join('')+'</div>';
+      case 'verdict': return '<div class="vpanel verdict"><div class="lbl">'+esc(v.label)+'</div><div class="val">'+esc(v.value)+'</div>'+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+'</div>';
+      case 'quote': return '<div class="vpanel quote"><div class="mark">”</div>'+esc(v.text)+(v.source?'<div class="src">— '+esc(v.source)+'</div>':'')+'</div>';
+      default: return '';
+    }
+  }
+  function vtitle(t){return t?'<div class="vtitle"><i></i>'+esc(t)+'</div>':'';}
+  function col(c,cls){if(!c)return '<div class="col"></div>';return '<div class="col '+cls+'"><h4>'+esc(c.title)+'</h4>'+(c.points||[]).map(function(p){return '<p><span>•</span><span>'+esc(p)+'</span></p>';}).join('')+'</div>';}
+
+  function enhance(root){ // count-up numbers
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),start=null,dur=900;
+      function tick(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);el.textContent=Math.round(p*target);if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // build steps
+  var stepsEl=document.getElementById('steps');
+  E.sections.forEach(function(s,i){
+    var d=document.createElement('div');d.className='step';d.dataset.idx=i;
+    d.innerHTML='<div class="card">'+esc(s.prose)+(s.annotation?'<span class="anno">'+esc(s.annotation)+'</span>':'')+'</div>';
+    stepsEl.appendChild(d);
+  });
+
+  var gfx=document.getElementById('gfx'),cur=-1;
+  function setActive(i){
+    if(i===cur)return;cur=i;
+    document.querySelectorAll('.step').forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    gfx.innerHTML=render(E.sections[i].visual);enhance(gfx);
+  }
+  setActive(0);
+
+  if(window.scrollama){
+    var sc=scrollama();
+    sc.setup({step:'.step',offset:0.62}).onStepEnter(function(r){setActive(r.index);});
+    window.addEventListener('resize',sc.resize);
+  }
+
+  // poll
+  if(E.poll&&E.poll.question){
+    var p=document.getElementById('poll');p.hidden=false;
+    document.getElementById('poll-q').textContent=E.poll.question;
+    var opts=document.getElementById('poll-opts'),rev=document.getElementById('poll-reveal');
+    (E.poll.options||[]).forEach(function(o){
+      var b=document.createElement('button');b.textContent=o;
+      b.onclick=function(){opts.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');rev.textContent=E.poll.reveal||'';rev.classList.add('show');};
+      opts.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>
