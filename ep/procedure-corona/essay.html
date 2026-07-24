@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>הכסף שההליך לא רואה · חדלות בגובה העיניים</title>
+<meta name="description" content="נוהל 12 של הכונ״ר קבע לאן הולך כסף הקורונה — לקופת הנשייה או לכיס החייב. מהי נקודת המוקש של הנאמן?" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1512; --ink2:#1f1917; --bone:#f2efe7; --oxblood:#1f6f5c;
+    --omer:#d9a441; --maya:#5c8fb3; --muted:#b8afa4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:Alef,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:var(--maya)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+  /* ---- hero ---- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:60px 22px;overflow:hidden}
+  .hero .kicker{color:var(--oxblood);font-weight:800;letter-spacing:6px;font-size:16px}
+  .hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;margin:14px 0 10px;max-width:14ch}
+  .hero .dek{color:var(--muted);font-size:clamp(18px,3.4vw,26px);max-width:30ch;margin:0 auto}
+  .hook{margin-top:46px}
+  .hook .val{font-size:clamp(90px,26vw,220px);font-weight:900;line-height:.9;color:var(--bone);
+    text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hook .lbl{color:var(--muted);font-size:clamp(16px,3.6vw,22px);max-width:24ch;margin:14px auto 0}
+  .scrollcue{position:absolute;bottom:26px;color:var(--muted);font-size:15px;letter-spacing:2px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  .courthouse{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.06;z-index:-1}
+  .courthouse svg{width:min(760px,90vw)}
+
+  /* ---- scrolly ---- */
+  .scrolly{position:relative}
+  .scrolly__graphic{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px 0}
+  .gfx{width:100%;max-width:720px;max-height:66vh;overflow:hidden}
+  .scrolly__steps{position:relative;margin-top:-100vh;z-index:2}
+  .step{min-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding:0 18px 5vh}
+  .step .card{background:rgba(17,13,13,.82);backdrop-filter:blur(7px);
+    border:1px solid rgba(122,31,31,.55);border-radius:20px;padding:22px 26px;max-width:560px;
+    font-size:clamp(19px,3.4vw,25px);font-weight:600;transition:opacity .4s, transform .4s;opacity:.35;transform:translateY(10px)}
+  .step.active .card{opacity:1;transform:none;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .anno{display:block;margin-top:10px;color:var(--omer);font-size:16px;font-weight:700}
+
+  /* ---- visual components ---- */
+  .vpanel{background:linear-gradient(180deg,#241c1a,#181312);border:2px solid var(--oxblood);
+    border-radius:26px;padding:28px 30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vtitle{display:flex;align-items:center;gap:10px;color:var(--oxblood);font-weight:800;font-size:26px;margin-bottom:18px}
+  .vtitle i{width:12px;height:12px;background:var(--oxblood);border-radius:3px;display:inline-block}
+  .gv-item{animation:fadeUp .6s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .tl-row{display:flex;gap:16px;margin-bottom:14px}
+  .tl-dot{width:22px;height:22px;border-radius:50%;background:var(--oxblood);flex:0 0 auto;margin-top:4px;box-shadow:0 0 0 5px var(--ink)}
+  .tl-date{color:var(--omer);font-weight:800;font-size:22px}
+  .tl-label{color:var(--bone);font-weight:600;font-size:23px}
+
+  .bar-row{margin-bottom:14px}
+  .bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:23px;margin-bottom:5px}
+  .bar-track{height:22px;background:rgba(243,239,232,.12);border-radius:7px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;width:0;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
+
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 26px;text-align:center}
+  .stat{flex:0 1 200px;min-width:0}
+  .stat .val{font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.15;white-space:nowrap}
+  .stat .lbl{color:var(--muted);font-size:18px;margin-top:6px;line-height:1.3}
+
+  .cols{display:flex;gap:20px}
+  .col{flex:1}
+  .col h4{font-size:22px;font-weight:800;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid}
+  .col.r h4{color:var(--maya);border-color:var(--maya)}
+  .col.l h4{color:var(--omer);border-color:var(--omer)}
+  .col p{margin:0 0 8px;font-size:20px;display:flex;gap:6px}
+  .divider{width:2px;background:rgba(243,239,232,.15)}
+
+  .judge{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .judge .d{width:15px;height:15px;border-radius:50%;flex:0 0 auto}
+  .judge .n{font-weight:800;font-size:23px;min-width:150px}
+  .judge .s{color:var(--muted);font-size:20px}
+
+  .verdict{text-align:center;padding:14px 0}
+  .verdict .lbl{color:var(--oxblood);font-weight:700;letter-spacing:2px;font-size:22px}
+  .verdict .val{font-size:clamp(44px,10vw,80px);font-weight:900;margin:8px 0}
+  .verdict .sub{color:var(--muted);font-size:22px}
+
+  .quote{font-size:clamp(24px,4.6vw,36px);font-weight:700;line-height:1.35}
+  .quote .mark{color:var(--oxblood);font-size:80px;line-height:.4;height:34px;font-weight:900}
+  .quote .src{color:var(--maya);font-weight:700;font-size:22px;margin-top:14px}
+
+  .hero-v{text-align:center}
+  .hero-v .val{font-size:clamp(70px,20vw,180px);font-weight:900;line-height:.9}
+  .hero-v .lbl{color:var(--muted);font-size:22px;margin-top:12px}
+
+  /* ---- poll ---- */
+  .poll{padding:90px 22px;text-align:center}
+  .poll h3{font-size:clamp(26px,5vw,40px);font-weight:900;margin:0 0 26px}
+  .poll .opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .poll button{background:transparent;border:2px solid var(--oxblood);color:var(--bone);
+    font-family:inherit;font-size:22px;font-weight:800;padding:16px 34px;border-radius:999px;cursor:pointer;transition:.2s}
+  .poll button:hover{background:var(--oxblood)}
+  .poll button.sel{background:var(--oxblood)}
+  .poll .reveal{max-width:34ch;margin:28px auto 0;color:var(--bone);font-size:22px;
+    opacity:0;transform:translateY(10px);transition:.5s}
+  .poll .reveal.show{opacity:1;transform:none}
+
+  /* ---- footer ---- */
+  .foot{border-top:1px solid rgba(243,239,232,.14);padding:60px 22px;text-align:center;color:var(--muted)}
+  .foot .cases{font-size:16px;line-height:1.9}
+  .foot .judges{font-size:16px;margin-top:14px}
+  .foot .brand{color:var(--oxblood);font-weight:800;letter-spacing:4px;margin-top:30px;font-size:20px}
+  .foot a{display:inline-block;margin-top:16px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .step .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="courthouse" aria-hidden="true">
+  <svg viewBox="0 0 200 160" fill="none" stroke="#f3efe8" stroke-width="2">
+    <polygon points="15,62 100,14 185,62"/><rect x="18" y="64" width="164" height="10"/>
+    <rect x="28" y="78" width="16" height="60" rx="2"/><rect x="60" y="78" width="16" height="60" rx="2"/>
+    <rect x="92" y="78" width="16" height="60" rx="2"/><rect x="124" y="78" width="16" height="60" rx="2"/>
+    <rect x="156" y="78" width="16" height="60" rx="2"/><rect x="14" y="140" width="172" height="12"/>
+  </svg>
+</div>
+
+<header class="hero">
+  <div class="kicker">חדלות בגובה העיניים</div>
+  <h1 id="h-title"></h1>
+  <p class="dek" id="h-dek"></p>
+  <div class="hook"><div class="val" id="h-val"></div><div class="lbl" id="h-lbl"></div></div>
+  <div class="scrollcue">גללו למטה ↓</div>
+</header>
+
+<section class="scrolly">
+  <div class="scrolly__graphic"><div class="gfx" id="gfx"></div></div>
+  <div class="scrolly__steps" id="steps"></div>
+</section>
+
+<section class="poll" id="poll" hidden>
+  <h3 id="poll-q"></h3>
+  <div class="opts" id="poll-opts"></div>
+  <p class="reveal" id="poll-reveal"></p>
+</section>
+
+<footer class="foot">
+  <div class="meta" id="f-meta"></div>
+  <div class="brand">חדלות בגובה העיניים</div>
+  <a href="" target="_blank" rel="noopener">להאזנה לפרק המלא →</a>
+</footer>
+
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+window.ESSAY = {"title": "הכסף שההליך לא רואה", "dek": "נוהל 12 של הכונ״ר קבע לאן הולך כסף הקורונה — לקופת הנשייה או לכיס החייב. מהי נקודת המוקש של הנאמן?", "hook": {"value": "₪500", "label": "מענק חג הפסח — הסכום היחיד שההליך עיוור לו לחלוטין: לא נכס, לא הכנסה, ואפילו לא חובת דיווח"}, "sections": [{"prose": "ב־22.04.2020, חמישה שבועות אחרי הכרזת מצב החירום המיוחד, פרסם הכונ״ר את נוהל מספר 12. תקופת החירום נמנית מיום 16.03.2020 ועד תום תוקף ההודעה — וזהו חלון הזמן שבו חלות הוראות הנוהל.", "visual": {"type": "timeline", "title": "ציר הזמן של הנוהל", "events": [{"date": "16.03.2020", "label": "תחילת תקופת החירום — הודעת שר המשפטים על מצב חירום מיוחד"}, {"date": "2020", "label": "תקנות שעת חירום: מענק סיוע לעצמאים והוראות מיוחדות לביטוח אבטלה"}, {"date": "22.04.2020", "label": "פרסום נוהל 12, מהדורה 1 — מעמד המענקים ודמי האבטלה בהליכי חדלות פירעון"}]}, "annotation": "הנוהל חל הן על הליכים לפי הפקודה והן על הליכים לפי חוק חדלות פירעון, התשע״ח־2018"}, {"prose": "הקביעה המרכזית של הנוהל היא הבחנה כפולה: מענק הסיוע לעצמאים ודמי האבטלה אינם נכס של קופת הנשייה — אך הם הכנסה לכל דבר. הכסף עובר לידי החייב, אולם הוא משוקלל בתשלום החודשי.", "visual": {"type": "contrast", "title": "מעמד כפול: מענק עצמאים ודמי אבטלה", "left": {"title": "במישור הנכסי", "points": ["אינם נכס של קופת הנשייה", "מועברים במלואם לידי החייב", "הנאמן אינו מושך אותם לקופה"]}, "right": {"title": "במישור ההכנסתי", "points": ["הכנסה לכל דבר של החייב", "בסיס לחישוב התשלום החודשי", "חובת דיווח בדוח הכנסות והוצאות לתקופה הרלוונטית"]}}, "annotation": "ההבחנה נכס/הכנסה היא לב הנוהל — טעות בסיווג משנה את התוצאה הכלכלית"}, {"prose": "הנוהל מטפל בשלושה סוגי כסף, וכל אחד מקבל מעמד שונה. רק מענק הפסח זוכה לפטור מלא ומוחלט.", "visual": {"type": "stats", "items": [{"value": "לא נכס · כן הכנסה", "label": "מענק סיוע לעצמאים"}, {"value": "לא נכס · כן הכנסה", "label": "דמי אבטלה לפי תקנות שעת החירום"}, {"value": "לא נכס · לא הכנסה", "label": "מענק חג הפסח — ₪500 לחייב או לילדיו שפרנסתם עליו"}]}, "annotation": "מענק הפסח ניתן מכוח סעיף 9 לחוק הביטוח הלאומי"}, {"prose": "מענק הפסח הוא היוצא מן הכלל: משולש פטורים מלא. הוא אינו נכנס לקופה, אינו נחשב הכנסה, והחייב אף פטור מלדווח עליו — הכסף היחיד בנוהל ששקוף להליך לגמרי.", "visual": {"type": "stats", "items": [{"value": "✕ נכס", "label": "אינו חלק מנכסי קופת הנשייה"}, {"value": "✕ הכנסה", "label": "אינו משוקלל בתשלום החודשי"}, {"value": "✕ דיווח", "label": "פטור מדיווח בדוח הכנסות והוצאות"}]}, "annotation": "עבור הנאמן: הופעת ₪500 כאלה בחשבון החייב אינה עילה לדרישה או להתאמת צו"}, {"prose": "וכאן המוקש מן הכיוון ההפוך: חייב שזכאי למענק או לדמי אבטלה ולא פעל לקבלם. הנוהל רואה בכך אי־מיצוי זכויות — עם השלכות ישירות על התשלום החודשי.", "visual": {"type": "quote", "text": "חייב הזכאי לקבל מענק כאמור או דמי אבטלה כאמור ולא פעל לקבלתם, עלול להיחשב כמי שאינו פועל למיצוי זכויותיו ואינו ממקסם את יכולתו לפרוע את חובותיו", "source": "נוהל 12, סעיף 3"}, "annotation": "נקודת הבדיקה של הנאמן: לא רק מה שהתקבל — גם מה שהיה אמור להתקבל ולא נדרש"}, {"prose": "פרק ד׳ עוסק בפיצויי פיטורים — כאן שיקול הדעת רחב יותר. חייב שפוטר ואינו משתלב בעבודה בשל המשבר רשאי לפנות לבית המשפט, והממונה יגיש תגובה לפי נסיבות העניין: סכומי מחיה לחייב, והיתרה לקופה.", "visual": {"type": "contrast", "title": "פיצויי פיטורים בתקופת החירום — קו החלוקה", "left": {"title": "לידי החייב", "points": ["הסכומים הדרושים למחייתו", "מחיית מי שפרנסתם עליו", "בכפוף לבקשה לבית המשפט המוסמך"]}, "right": {"title": "לקופת הנשייה", "points": ["יתרת כספי הפיצויים", "עמדת הממונה נבחנת לפי נסיבות כל מקרה"]}}, "annotation": "בשונה מהמענקים, כאן אין כלל אוטומטי — יש בקשה, תגובה והכרעה שיפוטית"}, {"prose": "השורה התחתונה לנאמן בדוח הבא: כסף הקורונה אינו מעשיר את הקופה במישרין, אך הוא משנה את תמונת ההכנסות — ואת חובות הבדיקה שלכם.", "visual": {"type": "hero", "value": "3 בדיקות", "label": "האם המענקים דווחו כהכנסה · האם התשלום החודשי משקף אותם · האם החייב מיצה את זכאותו"}, "annotation": "החייב רשאי במקביל לבקש הפחתה זמנית או פטור זמני מהתשלום החודשי לפי נוהל הקורונה הנפרד"}], "poll": {"question": "חייב עצמאי בהליך היה זכאי למענק סיוע ולא הגיש בקשה לקבלו. כיצד תפעלו?", "options": ["אתריע — אי־מיצוי זכויות המשליך על התשלום החודשי", "אמתין לדוח ההכנסות וההוצאות הבא", "לא אתערב — זו החלטה אישית של החייב"], "reveal": "לפי סעיף 3 לנוהל, חייב שלא פעל לקבלת מענק או דמי אבטלה עלול להיחשב כמי שאינו ממקסם את יכולת הפירעון — על כל המשתמע מכך לעניין התשלום החודשי. עמדת הפסיביות אינה עולה בקנה אחד עם הנוהל."}, "method": "מבוסס על נוהל מספר 12 של הכונס הרשמי והממונה על הליכי חדלות פירעון ושיקום כלכלי מיום 22.04.2020 (מהדורה 1), בנוגע למענקים ולדמי אבטלה בעקבות משבר הקורונה ולפיצויי פיטורים בתקופת החירום. אחראית הנוהל: עו״ד הילה גולברי בר־און.", "meta": []};
+(function(){
+  var E = window.ESSAY, esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;};
+
+  // hero + footer
+  document.getElementById('h-title').textContent = E.title||'';
+  document.getElementById('h-dek').textContent = E.dek||'';
+  if(E.hook){document.getElementById('h-val').textContent=E.hook.value||'';document.getElementById('h-lbl').textContent=E.hook.label||'';}
+  if(E.meta&&E.meta.length){document.getElementById('f-meta').innerHTML=E.meta.map(function(m){
+    return '<div>'+esc((m.emoji||'')+' '+(m.label?m.label+': ':'')+(m.values||[]).join(' · '))+'</div>';}).join('');}
+
+  // ---- visual renderers ----
+  function di(i){return 'style="animation-delay:'+(i*0.08)+'s"';}
+  function render(v){
+    if(!v) return '';
+    switch(v.type){
+      case 'hero': return '<div class="vpanel hero-v"><div class="val">'+esc(v.value)+'</div><div class="lbl">'+esc(v.label)+'</div></div>';
+      case 'timeline': return '<div class="vpanel">'+vtitle(v.title)+ (v.events||[]).map(function(e,i){
+        return '<div class="tl-row gv-item" '+di(i)+'><span class="tl-dot"></span><div><div class="tl-date">'+esc(e.date)+'</div><div class="tl-label">'+esc(e.label)+'</div></div></div>';}).join('')+'</div>';
+      case 'voteCompare': {
+        var max=1;(v.rounds||[]).forEach(function(r){(r.results||[]).forEach(function(x){if(x.votes>max)max=x.votes;});});
+        return '<div class="vpanel">'+vtitle(v.title)+(v.rounds||[]).map(function(r){
+          var win=Math.max.apply(null,(r.results||[]).map(function(x){return x.votes;}));
+          return '<div class="round-name">'+esc(r.name)+'</div>'+(r.results||[]).map(function(x){
+            var w=Math.round(x.votes/max*100);var c=x.votes===win?'var(--oxblood)':'rgba(217,105,79,.5)';
+            return '<div class="bar-row"><div class="bar-head"><span>'+esc(x.name)+'</span><span data-count="'+x.votes+'">0</span></div><div class="bar-track"><div class="bar-fill" style="--w:'+w+'%;background:'+c+'"></div></div></div>';
+          }).join('');}).join('')+'</div>';
+      }
+      case 'stats': return '<div class="vpanel"><div class="stats">'+(v.items||[]).map(function(it,i){
+        var n=/^\d+$/.test(String(it.value));
+        return '<div class="stat gv-item" '+di(i)+'><div class="val" '+(n?'data-count="'+it.value+'"':'')+'>'+(n?'0':esc(it.value))+'</div><div class="lbl">'+esc(it.label)+'</div></div>';}).join('')+'</div></div>';
+      case 'contrast': return '<div class="vpanel"><div class="cols">'+col(v.right,'r')+'<div class="divider"></div>'+col(v.left,'l')+'</div></div>';
+      case 'judges': return '<div class="vpanel">'+vtitle(v.title)+(v.judges||[]).map(function(j,i){
+        return '<div class="judge gv-item" '+di(i)+'><span class="d" style="background:'+(i===0?'var(--oxblood)':'var(--omer)')+'"></span><span class="n">'+esc(j.name)+'</span><span class="s">'+esc(j.stance)+'</span></div>';}).join('')+'</div>';
+      case 'verdict': return '<div class="vpanel verdict"><div class="lbl">'+esc(v.label)+'</div><div class="val">'+esc(v.value)+'</div>'+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+'</div>';
+      case 'quote': return '<div class="vpanel quote"><div class="mark">”</div>'+esc(v.text)+(v.source?'<div class="src">— '+esc(v.source)+'</div>':'')+'</div>';
+      default: return '';
+    }
+  }
+  function vtitle(t){return t?'<div class="vtitle"><i></i>'+esc(t)+'</div>':'';}
+  function col(c,cls){if(!c)return '<div class="col"></div>';return '<div class="col '+cls+'"><h4>'+esc(c.title)+'</h4>'+(c.points||[]).map(function(p){return '<p><span>•</span><span>'+esc(p)+'</span></p>';}).join('')+'</div>';}
+
+  function enhance(root){ // count-up numbers
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),start=null,dur=900;
+      function tick(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);el.textContent=Math.round(p*target);if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // build steps
+  var stepsEl=document.getElementById('steps');
+  E.sections.forEach(function(s,i){
+    var d=document.createElement('div');d.className='step';d.dataset.idx=i;
+    d.innerHTML='<div class="card">'+esc(s.prose)+(s.annotation?'<span class="anno">'+esc(s.annotation)+'</span>':'')+'</div>';
+    stepsEl.appendChild(d);
+  });
+
+  var gfx=document.getElementById('gfx'),cur=-1;
+  function setActive(i){
+    if(i===cur)return;cur=i;
+    document.querySelectorAll('.step').forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    gfx.innerHTML=render(E.sections[i].visual);enhance(gfx);
+  }
+  setActive(0);
+
+  if(window.scrollama){
+    var sc=scrollama();
+    sc.setup({step:'.step',offset:0.62}).onStepEnter(function(r){setActive(r.index);});
+    window.addEventListener('resize',sc.resize);
+  }
+
+  // poll
+  if(E.poll&&E.poll.question){
+    var p=document.getElementById('poll');p.hidden=false;
+    document.getElementById('poll-q').textContent=E.poll.question;
+    var opts=document.getElementById('poll-opts'),rev=document.getElementById('poll-reveal');
+    (E.poll.options||[]).forEach(function(o){
+      var b=document.createElement('button');b.textContent=o;
+      b.onclick=function(){opts.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');rev.textContent=E.poll.reveal||'';rev.classList.add('show');};
+      opts.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>
