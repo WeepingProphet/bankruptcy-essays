@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שמונה דוחות, מסלול אחד — חדלות בגובה העיניים</title>
+<meta name="description" content="נוהל 14 של הממונה הופך את הדיווח לשלד ההליך כולו. היכן המועדים קשיחים, היכן נותר לנאמן שיקול דעת — ואיפה מונח המוקש?">
+<meta property="og:title" content="שמונה דוחות, מסלול אחד">
+<meta property="og:description" content="נוהל 14 של הממונה הופך את הדיווח לשלד ההליך כולו. היכן המועדים קשיחים, היכן נותר לנאמן שיקול דעת — ואיפה מונח המוקש?">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f1512;--paper:#f2efe7;--teal:#1f6f5c;--teal-lift:#2f8f78;
+    --gold:#d9a441;--slate:#5c8fb3;--paper-dim:#e3ded2;--ink-soft:#3a443f;
+    --line:rgba(15,21,18,.14);--font:"Alef",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
+    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .bar{background:var(--ink);color:var(--paper)}
+  .bar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+  .bar .mark{font-weight:700;font-size:20px;letter-spacing:.2px;text-decoration:none;color:var(--paper)}
+  .bar .scale{color:var(--gold);font-size:22px;line-height:1}
+  .bar .eyebrow{margin-inline-start:auto;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--paper-dim);opacity:.8}
+  .hero{background:var(--ink);color:var(--paper);padding:22px 0 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+  .kick{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .kick .n{font-size:15px;color:var(--paper)}
+  .kick .bar-sm{width:34px;height:1px;background:var(--gold);opacity:.6}
+  h1{font-weight:700;line-height:1.04;margin:.34em 0 .2em;
+    font-size:clamp(40px,7.5vw,88px);letter-spacing:-.4px}
+  .dek{max-width:44ch;font-size:clamp(17px,2.3vw,21px);color:var(--paper-dim);line-height:1.55;margin:0 0 22px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .chip{font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:999px;
+    border:1px solid rgba(242,239,231,.28);color:var(--paper-dim)}
+  .chip.on{background:rgba(217,164,65,.14);border-color:rgba(217,164,65,.5);color:var(--gold)}
+  .player{background:rgba(242,239,231,.06);border:1px solid rgba(242,239,231,.16);
+    border-radius:16px;padding:20px 22px;max-width:640px}
+  .player .lbl{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal-lift);margin-bottom:14px}
+  .player .lbl::before{content:"\25B6";font-size:11px}
+  audio{width:100%;height:44px}
+  .dl{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;
+    padding:11px 18px;border-radius:10px;text-decoration:none;transition:transform .12s ease,background .18s ease,border-color .18s ease,color .18s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .btn.solid{background:var(--teal);color:var(--paper)}
+  .btn.solid:hover{background:var(--teal-lift)}
+  .btn.ghost{background:transparent;color:var(--paper);border:1px solid rgba(242,239,231,.32)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+  section.pad{padding:64px 0}
+  .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:start}
+  .eyebrow2{font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
+  .lede{font-weight:700;font-size:clamp(21px,2.6vw,26px);line-height:1.45;margin:0 0 18px}
+  .body-txt{font-size:17.5px;line-height:1.75;color:var(--ink-soft)}
+  .body-txt b{color:var(--ink);font-weight:700}
+  .short-col{position:sticky;top:24px}
+  .short-frame{background:var(--ink);border-radius:18px;padding:12px;box-shadow:0 24px 60px -28px rgba(15,21,18,.7)}
+  video{display:block;width:100%;border-radius:10px;background:#000;aspect-ratio:9/16}
+  .short-cap{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13.5px;color:var(--paper-dim)}
+  .short-cap a{color:var(--gold);text-decoration:none;font-weight:700}
+  .short-cap a:hover{text-decoration:underline}
+  .essay{background:var(--ink);color:var(--paper)}
+  .essay .grid2{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+  .essay .big{font-weight:700;font-size:clamp(56px,10vw,104px);line-height:.9;color:var(--gold)}
+  .essay h3{font-weight:700;font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+  .essay p{color:var(--paper-dim);margin:0 0 20px;max-width:52ch}
+  .back{display:inline-block;margin:26px 0 0;font-size:14.5px;font-weight:700;color:var(--teal);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  footer{padding:44px 0 56px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-soft)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:baseline}
+  footer .fmark{font-weight:700;color:var(--ink);font-size:17px}
+  footer .sp{margin-inline-start:auto}
+  footer a{color:var(--teal);text-decoration:none;font-weight:700}
+  footer a:hover{text-decoration:underline}
+  /* homepage cards */
+  .about{font-size:clamp(18px,2.2vw,22px);color:var(--ink-soft);max-width:60ch;margin:0 0 8px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
+    border-radius:18px;padding:26px 26px 22px;transition:transform .14s ease,box-shadow .2s ease;text-decoration:none;color:inherit}
+  .card:hover{transform:translateY(-3px);box-shadow:0 20px 44px -26px rgba(15,21,18,.5)}
+  .card .cnum{font-weight:700;font-size:40px;line-height:1;color:var(--gold)}
+  .card .ckick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:14px 0 8px}
+  .card h2{font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.2;margin:0 0 10px}
+  .card p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px}
+  .card .go{margin-top:auto;font-weight:700;color:var(--teal)}
+  /* quiz */
+  .quiz{background:var(--paper);border-top:1px solid var(--line)}
+  .qhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:26px}
+  .qhead h2{font-weight:700;font-size:clamp(24px,3vw,32px);margin:0}
+  .qscore{margin-inline-start:auto;font-weight:700;font-size:15px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .qscore b{color:var(--teal);font-size:18px}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px}
+  .qq{font-weight:700;font-size:18px;line-height:1.45;margin-bottom:16px}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font-family:var(--font);font-size:16px;font-weight:600;text-align:right;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;
+    cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px}
+  .qopt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--ink-soft);flex:0 0 auto;opacity:.5}
+  .qopt:hover:not(:disabled){border-color:var(--teal);background:#fff}
+  .qopt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--teal);background:rgba(31,111,92,.12);color:#155}
+  .qopt.correct::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1;font-size:15px;text-align:center}
+  .qopt.wrong{border-color:#b4462f;background:rgba(180,70,47,.1);color:#8a2f1c}
+  .qopt.wrong::before{content:"✕";border:none;color:#b4462f;font-weight:900;opacity:1;font-size:14px;text-align:center}
+  .qopt.reveal::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1}
+  .qopt.reveal{border-color:var(--teal);color:#155}
+  .qfb{margin-top:14px;padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.55}
+  .qfb b{font-weight:700}
+  .qfb.ok{background:rgba(31,111,92,.1);color:#155}
+  .qfb.no{background:rgba(217,164,65,.14);color:#7a5a13}
+  .qdone{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--ink);color:var(--paper);
+    font-weight:700;font-size:18px;text-align:center;display:none}
+  .qdone.show{display:block}
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;gap:36px}
+    .short-col{position:static;max-width:360px}
+    .essay .grid2{grid-template-columns:1fr;gap:16px}
+    .cards{grid-template-columns:1fr}
+    section.pad{padding:48px 0}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap"><span class="scale">⚖</span><a class="mark" href="../../">חדלות בגובה העיניים</a><span class="eyebrow">פודקאסט לנאמנים</span></div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="kick"><span class="n">פרק 17</span><span class="bar-sm"></span> הממונה</span>
+  <h1>שמונה דוחות, מסלול אחד</h1>
+  <p class="dek">נוהל 14 של הממונה הופך את הדיווח לשלד ההליך כולו. היכן המועדים קשיחים, היכן נותר לנאמן שיקול דעת — ואיפה מונח המוקש?</p>
+  <div class="chips"><span class="chip on">≈ 8 דקות</span></div>
+  <div class="player">
+    <div class="lbl">האזנה לפרק</div>
+    <audio controls preload="metadata" src="episode.mp3"></audio>
+    <div class="dl">
+      <a class="btn solid" href="episode.mp3" download>⬇ הורדת הפרק (MP3)</a>
+      <a class="btn ghost" href="short.mp4" download>⬇ הורדת הסרטון (MP4)</a>
+    </div>
+  </div>
+</div></header>
+
+<section class="pad"><div class="wrap grid">
+  <div>
+    <p class="eyebrow2">על הפרק</p>
+    <p class="lede">דוחות ודיווחים נדרש נאמן להגיש בכל הליך חדלות פירעון של יחיד</p>
+    <p class="body-txt">הנוהל שמסדיר את כל עולם הדיווח של הנאמן בהליכי יחידים — מבקרת הביניים בתוך 5 חודשים, דרך דוח ממצאי הבדיקה, הדוחות התקופתיים והמיידיים, ועד הדוח המסכם והסופי. בפרק נעבור על ציר הזמן המלא: מה כל דוח צריך לכלול, מתי מגישים אותו באתר הנאמנים, ומתי אפשר לבקש דחייה — למשל בשל מורכבות הבדיקה או אי שיתוף פעולה מצד החייב. למעשה, זו מפת הדרכים שלכם לעבודה מול הממונה: עמידה במועדים ובסטנדרט הדיווח האחיד היא לא רק חובה, אלא גם מה שנבחן במשוב על תפקוד הנאמן ובגיבוש רשימות הנאמנים.</p>
+    <a class="back" href="../../">← כל הפרקים</a>
+  </div>
+  <div class="short-col">
+    <div class="short-frame">
+      <video controls preload="metadata" playsinline src="short.mp4"></video>
+      <div class="short-cap"><span>הסרטון הקצר</span><a href="short.mp4" download>הורדה ↓</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="essay"><div class="wrap pad">
+  <div class="grid2">
+    <div class="big">8</div>
+    <div>
+      <p class="eyebrow2" style="color:var(--gold)">סיכום גרפי</p>
+      <h3>הנקודות המרכזיות של הנוהל — בגלילה אחת</h3>
+      <p>גרסה אינטראקטיבית של הפרק: הגרפיקה משתנה תוך כדי גלילה ומראה בדיוק היכן נותר שיקול הדעת של הנאמן, והיכן הנוהל כובל אותו.</p>
+      <a class="btn solid" href="essay.html">קריאת הסיכום הגרפי ←</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="quiz"><div class="wrap pad">
+  <p class="eyebrow2">בחן את עצמך</p>
+  <div class="qhead"><h2>10 שאלות על הפרק</h2><span class="qscore">ניקוד: <b id="qs">0</b> / <span id="qtot">0</span></span></div>
+  <div id="qlist"></div>
+  <div class="qdone" id="qdone"></div>
+</div></section>
+<script>window.EP_QUIZ = {"questions": [{"q": "מהו המועד להגשת דיווח בקרת הביניים?", "options": ["בתוך 3 חודשים ממועד מינוי הנאמן", "בתוך 5 חודשים ממועד מתן הצו לפתיחת הליכים או ממועד מינוי הנאמן, לפי המאוחר", "בתוך 6 חודשים ממועד מתן הצו לפתיחת הליכים", "בתוך 9 חודשים ממועד מינוי הנאמן"], "correct": 1, "feedback": "לפי סעיף 14.1 לנוהל, דיווח בקרת הביניים יוגש בתוך 5 חודשים ממועד מתן הצו לפתיחת הליכים או מינוי הנאמן, לפי המאוחר מביניהם, כאמצעי בקרה מקדמי של הממונה לפני דוח ממצאי הבדיקה."}, {"q": "מה מעמדם של דיווח בקרת הביניים והדיווח על מימוש והפקדות?", "options": ["דיווחים פנימיים שאינם נדרשים לפי החוק, הזמינים לעיון הממונה בלבד", "דוחות הנדרשים לפי החוק והעומדים לעיון החייב והנושים", "דיווחים המוגשים ישירות לבית המשפט לצורך פיקוח שיפוטי", "דיווחים וולונטריים שהנאמן רשאי להגיש לפי שיקול דעתו בלבד"], "correct": 0, "feedback": "לפי סעיפים 13.5 ו-28.2 לנוהל, שני הדיווחים אינם נדרשים לפי החוק ולכן הם דיווחים פנימיים הזמינים לעיון הממונה בלבד, בשונה מיתר הדוחות המועמדים לעיון בעלי העניין."}, {"q": "מהו המועד להגשת דוח ממצאי הבדיקה?", "options": ["בתוך 9 חודשים ממועד מתן הצו, ללא תלות במועד הדיון בהצעת הממונה", "בתוך 12 חודשים ממועד מינוי הנאמן", "בתוך 9 חודשים ממועד מינוי הנאמן ולא יאוחר מ-3 חודשים לפני מועד הדיון בהצעת הממונה, לפי המאוחר", "בתוך 3 חודשים ממועד הגשת דיווח בקרת הביניים"], "correct": 2, "feedback": "לפי סעיף 153 לחוק וסעיפים 13.1 ו-17.2 לנוהל, הדוח יוגש בתום 9 חודשים ממועד המינוי ולא יאוחר מ-3 חודשים טרם הדיון בהצעת הממונה, לפי המאוחר מביניהם."}, {"q": "בית המשפט קבע את הדיון בהצעת הממונה למועד הקצר משנה ממועד מתן הצו ומינוי הנאמן. כיצד על הנאמן לפעול?", "options": ["להגיש את הדוח מוקדם ככל הניתן, גם אם הבדיקה טרם הושלמה", "להגיש לבית המשפט בקשה לדחיית מועד הדיון, למועד שיאפשר הגשת הדוח לא יאוחר מ-3 חודשים לפני הדיון החדש", "לפנות לממונה בבקשה לפטור מהגשת דוח ממצאי הבדיקה", "להמתין להנחיה יזומה מהממונה ללא נקיטת פעולה"], "correct": 1, "feedback": "לפי סעיף 17.2.2 לנוהל, במקרה כזה על הנאמן להגיש לבית המשפט בקשה לדחיית מועד הדיון, כך שיתאפשר להגיש את דוח ממצאי הבדיקה לממונה לא יאוחר מ-3 חודשים לפני המועד החדש."}, {"q": "לאיזו תקופה ידחה הממונה, ככלל, את מועד הגשת דוח ממצאי הבדיקה בעילה של מורכבות הבדיקה?", "options": ["עד 30 ימים בלבד, ללא אפשרות הארכה", "עד 90 ימים נוספים", "עד 6 חודשים נוספים", "עד 60 ימים נוספים, ובנסיבות מתאימות תקופה נוספת בכפוף להגשת בקשה נוספת"], "correct": 3, "feedback": "לפי סעיף 17.5.2 לנוהל, ככלל תאושר דחייה של עד 60 ימים נוספים בעילת מורכבות הבדיקה, ובנסיבות מתאימות ובכפוף לבקשה נוספת של הנאמן תיקבע תקופה נוספת."}, {"q": "הנאמן הגיש לבית המשפט בקשה לביטול הצו לפתיחת הליכים, והגיע המועד להגשת דוח ממצאי הבדיקה. כיצד ינהג?", "options": ["יגיש את הדוח במועדו — בקשה לביטול הצו אינה מהווה עילה לאי-הגשת הדוח", "ימתין להכרעת בית המשפט בבקשת הביטול לפני הגשת הדוח", "יגיש לממונה בקשה לדחיית מועד ההגשה בעילה של נסיבות אחרות", "יגיש דוח חלקי הכולל רק את פרק ההמלצות"], "correct": 0, "feedback": "לפי סעיף 17.9 לנוהל, בקשה לביטול הצו לפתיחת הליכים — או כוונה להגישה — אינה עילה לאי-הגשת דוח ממצאי הבדיקה, ועל הנאמן להגישו במועדו. זהו מוקש נפוץ."}, {"q": "מתי יוגש הדוח התקופתי הראשון?", "options": ["בתוך שנה ממועד מתן הצו לפתיחת הליכים", "בתוך שישה חודשים ממועד מינוי הנאמן", "בתוך שישה חודשים ממועד הגשת דוח ממצאי הבדיקה או ממועד הדיון בהצעת הממונה, לפי המאוחר", "בתוך שלושה חודשים ממועד מתן הצו לשיקום כלכלי"], "correct": 2, "feedback": "לפי סעיף 21.1 לנוהל וסעיף 137(ב) לחוק, הדוח התקופתי הראשון יוגש בתוך שישה חודשים ממועד הגשת דוח ממצאי הבדיקה או ממועד הדיון, לפי המאוחר, ולאחר מכן אחת לשנה לפחות."}, {"q": "לנאמן ניגוד עניינים המונע ממנו לבדוק תביעת חוב בתיק. מה עליו לעשות?", "options": ["לדחות את תביעת החוב ולציין את ניגוד העניינים בהכרעה", "להעביר את בדיקת התביעה להכרעת בית המשפט", "לבדוק את התביעה תוך גילוי נאות של ניגוד העניינים בדוח", "לפנות לממונה בבקשה למינוי בעל תפקיד נוסף לבדיקת התביעה, אלא אם פטר אותו הממונה מבדיקתה"], "correct": 3, "feedback": "לפי סעיף 14.3.7 לנוהל, בניגוד עניינים בבדיקת תביעת חוב נדרש הנאמן לפנות לממונה בבקשה למינוי בעל תפקיד נוסף לבדיקתה, אלא אם כן פטר הממונה את הנאמן מהבדיקה."}, {"q": "מדוע קריטי להגיש את הדוח המסכם במועדו — שלושה חודשים לפני תום תקופת התשלומים?", "options": ["כדי לאפשר לנושים להגיש תביעות חוב נוספות בטרם ההפטר", "כדי שבקשה לשינוי תנאי הצו שתוגש במועד תאריך אוטומטית את תקופת התשלומים מכוח סעיף 173(ב) לחוק עד הכרעת בית המשפט, ותימנע פגיעה ברצף התשלומים", "כדי לאפשר לחייב לערער על תנאי הצו לשיקום כלכלי", "כדי להקדים את חלוקת הכספים מקופת הנשייה לנושים"], "correct": 1, "feedback": "לפי סעיף 34.1 לנוהל, הגשה במועד מאפשרת לממונה לפעול בטרם יקבל החייב הפטר מכוח החוק, שכן הגשת בקשה לשינוי תנאי הצו במועד מאריכה אוטומטית את תקופת התשלומים מכוח סעיף 173(ב) לחוק עד להכרעת בית המשפט."}, {"q": "מתי רשאי הנאמן להגיש את הדוח הסופי?", "options": ["מיד עם מתן ההפטר לחייב", "עם תום תקופת התשלומים, גם אם נותרו כספים בקופת הנשייה", "רק לאחר שקיבל הודעה מהממונה על חלוקה סופית של כל נכסי קופת הנשייה", "רק לאחר אישור אסיפת נושים לסיום ההליך"], "correct": 2, "feedback": "לפי סעיף 38.2 לנוהל, לא ניתן להגיש דוח סופי כל עוד נותרו כספים בקופת הנשייה, והוא יוגש רק לאחר הודעת הממונה על חלוקה סופית. יצוין כי החלטה על הכללת נכסים עתידיים לפי סעיפים 167(ג) או 164(ג) לחוק אינה דוחה את מועד ההגשה."}]};</script>
+<script>
+(function(){
+  var data=window.EP_QUIZ; if(!data||!data.questions||!data.questions.length)return;
+  var list=document.getElementById('qlist'),qsEl=document.getElementById('qs'),
+      qtotEl=document.getElementById('qtot'),doneEl=document.getElementById('qdone');
+  var total=data.questions.length; qtotEl.textContent=total;
+  var score=0,answered=0;
+  data.questions.forEach(function(q,qi){
+    var card=document.createElement('div'); card.className='qcard';
+    var h=document.createElement('div'); h.className='qq'; h.textContent=(qi+1)+'. '+q.q; card.appendChild(h);
+    var opts=document.createElement('div'); opts.className='qopts'; opts.setAttribute('role','group');
+    q.options.forEach(function(opt,oi){
+      var b=document.createElement('button'); b.type='button'; b.className='qopt'; b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(card.classList.contains('answered'))return;
+        card.classList.add('answered'); answered++;
+        var right=(oi===q.correct);
+        if(right){b.classList.add('correct');score++;}
+        else{b.classList.add('wrong'); if(opts.children[q.correct])opts.children[q.correct].classList.add('reveal');}
+        for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+        qsEl.textContent=score;
+        var fb=document.createElement('div'); fb.className='qfb '+(right?'ok':'no');
+        var strong=document.createElement('b'); strong.textContent=right?'נכון! ':'לא נכון. ';
+        fb.appendChild(strong); fb.appendChild(document.createTextNode(q.feedback||''));
+        card.appendChild(fb);
+        if(answered===total){doneEl.textContent='סיימת! '+score+' מתוך '+total+' תשובות נכונות.'; doneEl.classList.add('show');}
+      });
+      opts.appendChild(b);
+    });
+    card.appendChild(opts); list.appendChild(card);
+  });
+})();
+</script>
+<footer><div class="wrap"><span class="fmark">⚖ חדלות בגובה העיניים</span><span>נהלים ופסיקה בחדלות פירעון — לנאמנים, בגובה העיניים</span><span class="sp"><a href="https://nivsimon.space" rel="me">@nivsimon.space</a></span></div></footer>
+</body>
+</html>
