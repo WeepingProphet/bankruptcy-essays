@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>הכשרה כלכלית: היכן נכנס שיקול הדעת של הנאמן? · חדלות בגובה העיניים</title>
+<meta name="description" content="נוהל 20 של הממונה קובע מתי תומלץ לחייב חובת השתתפות בהכשרה להתנהלות כלכלית — והשרשרת מתחילה בדוח ממצאי הבדיקה שלכם" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1512; --ink2:#1f1917; --bone:#f2efe7; --oxblood:#1f6f5c;
+    --omer:#d9a441; --maya:#5c8fb3; --muted:#b8afa4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:Alef,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:var(--maya)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+  /* ---- hero ---- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:60px 22px;overflow:hidden}
+  .hero .kicker{color:var(--oxblood);font-weight:800;letter-spacing:6px;font-size:16px}
+  .hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;margin:14px 0 10px;max-width:14ch}
+  .hero .dek{color:var(--muted);font-size:clamp(18px,3.4vw,26px);max-width:30ch;margin:0 auto}
+  .hook{margin-top:46px}
+  .hook .val{font-size:clamp(90px,26vw,220px);font-weight:900;line-height:.9;color:var(--bone);
+    text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hook .lbl{color:var(--muted);font-size:clamp(16px,3.6vw,22px);max-width:24ch;margin:14px auto 0}
+  .scrollcue{position:absolute;bottom:26px;color:var(--muted);font-size:15px;letter-spacing:2px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  .courthouse{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.06;z-index:-1}
+  .courthouse svg{width:min(760px,90vw)}
+
+  /* ---- scrolly ---- */
+  .scrolly{position:relative}
+  .scrolly__graphic{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px 0}
+  .gfx{width:100%;max-width:720px;max-height:66vh;overflow:hidden}
+  .scrolly__steps{position:relative;margin-top:-100vh;z-index:2}
+  .step{min-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding:0 18px 5vh}
+  .step .card{background:rgba(17,13,13,.82);backdrop-filter:blur(7px);
+    border:1px solid rgba(122,31,31,.55);border-radius:20px;padding:22px 26px;max-width:560px;
+    font-size:clamp(19px,3.4vw,25px);font-weight:600;transition:opacity .4s, transform .4s;opacity:.35;transform:translateY(10px)}
+  .step.active .card{opacity:1;transform:none;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .anno{display:block;margin-top:10px;color:var(--omer);font-size:16px;font-weight:700}
+
+  /* ---- visual components ---- */
+  .vpanel{background:linear-gradient(180deg,#241c1a,#181312);border:2px solid var(--oxblood);
+    border-radius:26px;padding:28px 30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vtitle{display:flex;align-items:center;gap:10px;color:var(--oxblood);font-weight:800;font-size:26px;margin-bottom:18px}
+  .vtitle i{width:12px;height:12px;background:var(--oxblood);border-radius:3px;display:inline-block}
+  .gv-item{animation:fadeUp .6s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .tl-row{display:flex;gap:16px;margin-bottom:14px}
+  .tl-dot{width:22px;height:22px;border-radius:50%;background:var(--oxblood);flex:0 0 auto;margin-top:4px;box-shadow:0 0 0 5px var(--ink)}
+  .tl-date{color:var(--omer);font-weight:800;font-size:22px}
+  .tl-label{color:var(--bone);font-weight:600;font-size:23px}
+
+  .bar-row{margin-bottom:14px}
+  .bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:23px;margin-bottom:5px}
+  .bar-track{height:22px;background:rgba(243,239,232,.12);border-radius:7px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;width:0;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
+
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 26px;text-align:center}
+  .stat{flex:0 1 200px;min-width:0}
+  .stat .val{font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.15;white-space:nowrap}
+  .stat .lbl{color:var(--muted);font-size:18px;margin-top:6px;line-height:1.3}
+
+  .cols{display:flex;gap:20px}
+  .col{flex:1}
+  .col h4{font-size:22px;font-weight:800;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid}
+  .col.r h4{color:var(--maya);border-color:var(--maya)}
+  .col.l h4{color:var(--omer);border-color:var(--omer)}
+  .col p{margin:0 0 8px;font-size:20px;display:flex;gap:6px}
+  .divider{width:2px;background:rgba(243,239,232,.15)}
+
+  .judge{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .judge .d{width:15px;height:15px;border-radius:50%;flex:0 0 auto}
+  .judge .n{font-weight:800;font-size:23px;min-width:150px}
+  .judge .s{color:var(--muted);font-size:20px}
+
+  .verdict{text-align:center;padding:14px 0}
+  .verdict .lbl{color:var(--oxblood);font-weight:700;letter-spacing:2px;font-size:22px}
+  .verdict .val{font-size:clamp(44px,10vw,80px);font-weight:900;margin:8px 0}
+  .verdict .sub{color:var(--muted);font-size:22px}
+
+  .quote{font-size:clamp(24px,4.6vw,36px);font-weight:700;line-height:1.35}
+  .quote .mark{color:var(--oxblood);font-size:80px;line-height:.4;height:34px;font-weight:900}
+  .quote .src{color:var(--maya);font-weight:700;font-size:22px;margin-top:14px}
+
+  .hero-v{text-align:center}
+  .hero-v .val{font-size:clamp(70px,20vw,180px);font-weight:900;line-height:.9}
+  .hero-v .lbl{color:var(--muted);font-size:22px;margin-top:12px}
+
+  /* ---- poll ---- */
+  .poll{padding:90px 22px;text-align:center}
+  .poll h3{font-size:clamp(26px,5vw,40px);font-weight:900;margin:0 0 26px}
+  .poll .opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .poll button{background:transparent;border:2px solid var(--oxblood);color:var(--bone);
+    font-family:inherit;font-size:22px;font-weight:800;padding:16px 34px;border-radius:999px;cursor:pointer;transition:.2s}
+  .poll button:hover{background:var(--oxblood)}
+  .poll button.sel{background:var(--oxblood)}
+  .poll .reveal{max-width:34ch;margin:28px auto 0;color:var(--bone);font-size:22px;
+    opacity:0;transform:translateY(10px);transition:.5s}
+  .poll .reveal.show{opacity:1;transform:none}
+
+  /* ---- footer ---- */
+  .foot{border-top:1px solid rgba(243,239,232,.14);padding:60px 22px;text-align:center;color:var(--muted)}
+  .foot .cases{font-size:16px;line-height:1.9}
+  .foot .judges{font-size:16px;margin-top:14px}
+  .foot .brand{color:var(--oxblood);font-weight:800;letter-spacing:4px;margin-top:30px;font-size:20px}
+  .foot a{display:inline-block;margin-top:16px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .step .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="courthouse" aria-hidden="true">
+  <svg viewBox="0 0 200 160" fill="none" stroke="#f3efe8" stroke-width="2">
+    <polygon points="15,62 100,14 185,62"/><rect x="18" y="64" width="164" height="10"/>
+    <rect x="28" y="78" width="16" height="60" rx="2"/><rect x="60" y="78" width="16" height="60" rx="2"/>
+    <rect x="92" y="78" width="16" height="60" rx="2"/><rect x="124" y="78" width="16" height="60" rx="2"/>
+    <rect x="156" y="78" width="16" height="60" rx="2"/><rect x="14" y="140" width="172" height="12"/>
+  </svg>
+</div>
+
+<header class="hero">
+  <div class="kicker">חדלות בגובה העיניים</div>
+  <h1 id="h-title"></h1>
+  <p class="dek" id="h-dek"></p>
+  <div class="hook"><div class="val" id="h-val"></div><div class="lbl" id="h-lbl"></div></div>
+  <div class="scrollcue">גללו למטה ↓</div>
+</header>
+
+<section class="scrolly">
+  <div class="scrolly__graphic"><div class="gfx" id="gfx"></div></div>
+  <div class="scrolly__steps" id="steps"></div>
+</section>
+
+<section class="poll" id="poll" hidden>
+  <h3 id="poll-q"></h3>
+  <div class="opts" id="poll-opts"></div>
+  <p class="reveal" id="poll-reveal"></p>
+</section>
+
+<footer class="foot">
+  <div class="meta" id="f-meta"></div>
+  <div class="brand">חדלות בגובה העיניים</div>
+  <a href="" target="_blank" rel="noopener">להאזנה לפרק המלא →</a>
+</footer>
+
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+window.ESSAY = {"title": "הכשרה כלכלית: היכן נכנס שיקול הדעת של הנאמן?", "dek": "נוהל 20 של הממונה קובע מתי תומלץ לחייב חובת השתתפות בהכשרה להתנהלות כלכלית — והשרשרת מתחילה בדוח ממצאי הבדיקה שלכם", "hook": {"value": "0", "label": "חייבים המחויבים בהכשרה כלכלית באופן אוטומטי — כל המלצה עוברת דרך דוח הנאמן לפי סעיף 153"}, "sections": [{"prose": "ב-11 באפריל 2021 פרסם הממונה את נוהל מספר 20, מהדורה ראשונה, שלוש שנים לאחר חקיקת חוק חדלות פירעון ושיקום כלכלי. הנוהל מתרגם את סעיף 161(ב)(5) לחוק לקריטריונים אופרטיביים.", "visual": {"type": "timeline", "title": "מחוק לנוהל", "events": [{"date": "2018", "label": "חוק חדלות פירעון ושיקום כלכלי — סעיף 161(ב)(5) מסמיך את בית המשפט לקבוע חובת הכשרה בצו לשיקום כלכלי"}, {"date": "2019", "label": "תקנות חדלות פירעון ושיקום כלכלי"}, {"date": "11.04.2021", "label": "נוהל 20 — הקריטריונים להמלצת הממונה על הכשרה כלכלית"}]}, "annotation": "אחראית הנוהל: עו״ד הילה גולברי בר-און"}, {"prose": "החוק אינו קובע חובת השתתפות כללית. ההחלטה נבנית בשלוש תחנות — והתחנה הראשונה היא ממצאי הבדיקה של הנאמן, בדגש על אופן יצירת החובות.", "visual": {"type": "timeline", "title": "שרשרת ההמלצה", "events": [{"date": "ס׳ 153", "label": "הנאמן מגיש לממונה דוח ממצאי בדיקה הכולל המלצה בעניין הכשרה"}, {"date": "ס׳ 154", "label": "הממונה משקלל את המלצת הנאמן בהצעת התכנית לשיקום כלכלי"}, {"date": "ס׳ 161(ב)(5)", "label": "בית המשפט קובע בצו לשיקום כלכלי אם הנסיבות מצביעות שההכשרה תסייע לשיקום"}]}, "annotation": "סעיף 7 לנוהל: ההמלצה תינתן לפי נסיבות כל מקרה ובהתבסס על המלצת הנאמן"}, {"prose": "הנוהל מדגיש כי אין מדובר בכלי ענישתי — נקודה שכדאי לנאמן להבהיר לחייב כבר בשלב הבדיקה, כדי למנוע התנגדות מיותרת.", "visual": {"type": "quote", "text": "אין מדובר בשום אופן בכלי ״ענישה״, אלא בכלי עזר הניתן לחייבים לצורך קידום שיקומם, בדרך של הקניית ידע פיננסי וכלים שיסייעו בשיפור התנהלותם הכלכלית", "source": "נוהל 20, סעיף 3"}, "annotation": "המסגור קובע גם את נטל ההנמקה: ההמלצה נבחנת לפי תועלת שיקומית, לא לפי חומרת ההתנהלות"}, {"prose": "מבחן הליבה הוא סיבתי: האם הקריסה נבעה מטעויות בהתנהלות הכלכלית השוטפת. המדד המעשי המרכזי — הרכב החובות.", "visual": {"type": "contrast", "title": "מתי תומלץ הכשרה — מבחן הרכב החובות", "left": {"title": "נוטה להמלצה", "points": ["עיקר החובות צרכניים — צריכה אישית, משפחתית ומשק בית", "הלוואות לרכישת מוצרים ושירותים צרכניים, לרבות משכנתא", "הקריסה נבעה מטעויות בהתנהלות השוטפת וההכשרה עשויה לסייע לשיקום"]}, "right": {"title": "נוטה נגד המלצה", "points": ["עיקר החובות עסקיים — למעט מקרים חריגים", "אירוע חד-פעמי: מחלה, ערבות, פיטורים", "הכנסה משפחתית גבוהה משמעותית מההוצאות המדווחות"]}}, "annotation": "סעיפים 6.1–6.2: משכנתא נחשבת חוב צרכני לעניין זה — פרט שקל לפספס"}, {"prose": "סעיף 6.3 מונה חמישה מקרי שלילה. עבור הנאמן, זו רשימת בדיקה לפני ניסוח ההמלצה בדוח.", "visual": {"type": "stats", "items": [{"value": "אירוע חד-פעמי", "label": "מחלה, ערבות או פיטורים — נסיבות שאינן מעידות על כשל בהתנהלות השוטפת"}, {"value": "חובות עסקיים", "label": "אלא אם ההכשרה תסייע לשיקום במקרים חריגים"}, {"value": "חוסר תום לב", "label": "כשנראה שהכשרה לא תסייע לשיקום"}, {"value": "הכשרה קודמת", "label": "השתתפות בתכנית לפני ההליך — בהליך קודם או במסגרת אחרת"}, {"value": "נסיבות אישיות", "label": "מחלה כרונית קשה, בעיות קוגניטיביות או מנטליות"}]}, "annotation": "הרשימה פתוחה — ״בין היתר״ — ומותירה שיקול דעת לבעל התפקיד"}, {"prose": "קצוות סקאלת ההכנסה מקבלים טיפול הפוך: הכנסה גבוהה משמעותית מההוצאות היא שיקול נגד; הכנסה שאינה מכסה מחיה בסיסית אינה שוללת — אלא משנה את סוג ההכשרה.", "visual": {"type": "contrast", "title": "מבחן ההכנסה המשפחתית", "left": {"title": "הכנסה גבוהה משמעותית מההוצאות", "points": ["שיקול שלא להמליץ", "בתנאי שהממונה שוכנע שההכשרה אינה נחוצה לשיקום"]}, "right": {"title": "הכנסה שאינה עולה על הוצאות מחיה בסיסיות", "points": ["המלצה על הכשרה מותאמת", "דגש על מיצוי זכויות ומיצוי כושר השתכרות"]}}, "annotation": "סעיף 6.4: הכשרה מותאמת היא מסלול נפרד — כדאי לציין זאת במפורש בדוח כשהנתונים מתאימים"}, {"prose": "בהסדרי חוב לפי חלק י׳ התמונה מתהפכת: מאחר שבעל התפקיד אינו מבצע בדיקה כלכלית של אופן יצירת החובות, הממונה ומנהל ההסדר יימנעו מהמלצה כמעט תמיד.", "visual": {"type": "verdict", "label": "הסדרי חוב — סעיף 324(ב)(2)", "value": "רק במקרים חריגים", "sub": "מדיניות הממונה: ללא בדיקת אופן יצירת החובות — אין בסיס להמלצה על הכשרה"}, "annotation": "ההיגיון: ההמלצה נשענת על ממצאי בדיקה — וזו אינה מתקיימת בהליכי הסדר"}, {"prose": "השורה התחתונה לנאמן: ההמלצה בדוח ממצאי הבדיקה היא נקודת המוצא של כל השרשרת, והיא נבחנת במבחן אחד — האם ההכשרה תסייע לשיקום הכלכלי של החייב הספציפי.", "visual": {"type": "verdict", "label": "המבחן המנחה בכל תחנה", "value": "תועלת שיקומית", "sub": "נסיבות יצירת החובות + סיכוי שההכשרה תשפר את ההתנהלות — לא ענישה ולא ברירת מחדל"}, "annotation": "נמקו את ההמלצה על בסיס אופן יצירת החובות — זה מה שהממונה ובית המשפט יבחנו"}], "poll": {"question": "חייב שעיקר חובותיו צרכניים, אך ההכנסה המשפחתית גבוהה משמעותית מההוצאות המדווחות — האם תמליצו על הכשרה כלכלית?", "options": ["כן — הרכב החובות הצרכני מכריע", "לא — ההכנסה העודפת מייתרת את ההכשרה", "תלוי בממצאי הבדיקה על אופן יצירת החובות"], "reveal": "לפי סעיף 6.2, פער משמעותי בין הכנסה להוצאות הוא שיקול שלא להמליץ — אך רק אם הממונה שוכנע שההכשרה אינה נחוצה לשיקום. המבחן נותר נסיבתי, ולכן התשובה השלישית קרובה ביותר לרוח הנוהל."}, "method": "המסה מבוססת על נוהל הממונה מספר 20 בעניין הכשרה כלכלית לחייבים (מהדורה 1, 11.04.2021), המתווה את מדיניות הממונה ליישום סעיפים 153, 154, 161(ב)(5) ו-324(ב)(2) לחוק חדלות פירעון ושיקום כלכלי, התשע״ח-2018. הציטוטים והקריטריונים הובאו כלשונם מסעיפי הנוהל.", "meta": []};
+(function(){
+  var E = window.ESSAY, esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;};
+
+  // hero + footer
+  document.getElementById('h-title').textContent = E.title||'';
+  document.getElementById('h-dek').textContent = E.dek||'';
+  if(E.hook){document.getElementById('h-val').textContent=E.hook.value||'';document.getElementById('h-lbl').textContent=E.hook.label||'';}
+  if(E.meta&&E.meta.length){document.getElementById('f-meta').innerHTML=E.meta.map(function(m){
+    return '<div>'+esc((m.emoji||'')+' '+(m.label?m.label+': ':'')+(m.values||[]).join(' · '))+'</div>';}).join('');}
+
+  // ---- visual renderers ----
+  function di(i){return 'style="animation-delay:'+(i*0.08)+'s"';}
+  function render(v){
+    if(!v) return '';
+    switch(v.type){
+      case 'hero': return '<div class="vpanel hero-v"><div class="val">'+esc(v.value)+'</div><div class="lbl">'+esc(v.label)+'</div></div>';
+      case 'timeline': return '<div class="vpanel">'+vtitle(v.title)+ (v.events||[]).map(function(e,i){
+        return '<div class="tl-row gv-item" '+di(i)+'><span class="tl-dot"></span><div><div class="tl-date">'+esc(e.date)+'</div><div class="tl-label">'+esc(e.label)+'</div></div></div>';}).join('')+'</div>';
+      case 'voteCompare': {
+        var max=1;(v.rounds||[]).forEach(function(r){(r.results||[]).forEach(function(x){if(x.votes>max)max=x.votes;});});
+        return '<div class="vpanel">'+vtitle(v.title)+(v.rounds||[]).map(function(r){
+          var win=Math.max.apply(null,(r.results||[]).map(function(x){return x.votes;}));
+          return '<div class="round-name">'+esc(r.name)+'</div>'+(r.results||[]).map(function(x){
+            var w=Math.round(x.votes/max*100);var c=x.votes===win?'var(--oxblood)':'rgba(217,105,79,.5)';
+            return '<div class="bar-row"><div class="bar-head"><span>'+esc(x.name)+'</span><span data-count="'+x.votes+'">0</span></div><div class="bar-track"><div class="bar-fill" style="--w:'+w+'%;background:'+c+'"></div></div></div>';
+          }).join('');}).join('')+'</div>';
+      }
+      case 'stats': return '<div class="vpanel"><div class="stats">'+(v.items||[]).map(function(it,i){
+        var n=/^\d+$/.test(String(it.value));
+        return '<div class="stat gv-item" '+di(i)+'><div class="val" '+(n?'data-count="'+it.value+'"':'')+'>'+(n?'0':esc(it.value))+'</div><div class="lbl">'+esc(it.label)+'</div></div>';}).join('')+'</div></div>';
+      case 'contrast': return '<div class="vpanel"><div class="cols">'+col(v.right,'r')+'<div class="divider"></div>'+col(v.left,'l')+'</div></div>';
+      case 'judges': return '<div class="vpanel">'+vtitle(v.title)+(v.judges||[]).map(function(j,i){
+        return '<div class="judge gv-item" '+di(i)+'><span class="d" style="background:'+(i===0?'var(--oxblood)':'var(--omer)')+'"></span><span class="n">'+esc(j.name)+'</span><span class="s">'+esc(j.stance)+'</span></div>';}).join('')+'</div>';
+      case 'verdict': return '<div class="vpanel verdict"><div class="lbl">'+esc(v.label)+'</div><div class="val">'+esc(v.value)+'</div>'+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+'</div>';
+      case 'quote': return '<div class="vpanel quote"><div class="mark">”</div>'+esc(v.text)+(v.source?'<div class="src">— '+esc(v.source)+'</div>':'')+'</div>';
+      default: return '';
+    }
+  }
+  function vtitle(t){return t?'<div class="vtitle"><i></i>'+esc(t)+'</div>':'';}
+  function col(c,cls){if(!c)return '<div class="col"></div>';return '<div class="col '+cls+'"><h4>'+esc(c.title)+'</h4>'+(c.points||[]).map(function(p){return '<p><span>•</span><span>'+esc(p)+'</span></p>';}).join('')+'</div>';}
+
+  function enhance(root){ // count-up numbers
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),start=null,dur=900;
+      function tick(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);el.textContent=Math.round(p*target);if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // build steps
+  var stepsEl=document.getElementById('steps');
+  E.sections.forEach(function(s,i){
+    var d=document.createElement('div');d.className='step';d.dataset.idx=i;
+    d.innerHTML='<div class="card">'+esc(s.prose)+(s.annotation?'<span class="anno">'+esc(s.annotation)+'</span>':'')+'</div>';
+    stepsEl.appendChild(d);
+  });
+
+  var gfx=document.getElementById('gfx'),cur=-1;
+  function setActive(i){
+    if(i===cur)return;cur=i;
+    document.querySelectorAll('.step').forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    gfx.innerHTML=render(E.sections[i].visual);enhance(gfx);
+  }
+  setActive(0);
+
+  if(window.scrollama){
+    var sc=scrollama();
+    sc.setup({step:'.step',offset:0.62}).onStepEnter(function(r){setActive(r.index);});
+    window.addEventListener('resize',sc.resize);
+  }
+
+  // poll
+  if(E.poll&&E.poll.question){
+    var p=document.getElementById('poll');p.hidden=false;
+    document.getElementById('poll-q').textContent=E.poll.question;
+    var opts=document.getElementById('poll-opts'),rev=document.getElementById('poll-reveal');
+    (E.poll.options||[]).forEach(function(o){
+      var b=document.createElement('button');b.textContent=o;
+      b.onclick=function(){opts.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');rev.textContent=E.poll.reveal||'';rev.classList.add('show');};
+      opts.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>
