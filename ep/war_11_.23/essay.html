@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>דחייה איננה פטור · חדלות בגובה העיניים</title>
+<meta name="description" content="חמישה ימים אחרי פרוץ המלחמה הקפיא הממונה את התשלומים החודשיים בהליכי חדלות פירעון — אך החוב ממשיך להצטבר, ומועד ההשלמה נותר פתוח. היכן עובר הגבול בין דחייה לפטור, ומהו המוקש שעל הנאמן לזהות?" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f1512; --ink2:#1f1917; --bone:#f2efe7; --oxblood:#1f6f5c;
+    --omer:#d9a441; --maya:#5c8fb3; --muted:#b8afa4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ink);color:var(--bone);font-family:Alef,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+  a{color:var(--maya)}
+  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+  /* ---- hero ---- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;position:relative;padding:60px 22px;overflow:hidden}
+  .hero .kicker{color:var(--oxblood);font-weight:800;letter-spacing:6px;font-size:16px}
+  .hero h1{font-size:clamp(34px,7vw,68px);font-weight:900;line-height:1.1;margin:14px 0 10px;max-width:14ch}
+  .hero .dek{color:var(--muted);font-size:clamp(18px,3.4vw,26px);max-width:30ch;margin:0 auto}
+  .hook{margin-top:46px}
+  .hook .val{font-size:clamp(90px,26vw,220px);font-weight:900;line-height:.9;color:var(--bone);
+    text-shadow:0 8px 40px rgba(0,0,0,.5)}
+  .hook .lbl{color:var(--muted);font-size:clamp(16px,3.6vw,22px);max-width:24ch;margin:14px auto 0}
+  .scrollcue{position:absolute;bottom:26px;color:var(--muted);font-size:15px;letter-spacing:2px;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  .courthouse{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.06;z-index:-1}
+  .courthouse svg{width:min(760px,90vw)}
+
+  /* ---- scrolly ---- */
+  .scrolly{position:relative}
+  .scrolly__graphic{position:sticky;top:0;height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:5vh 16px 0}
+  .gfx{width:100%;max-width:720px;max-height:66vh;overflow:hidden}
+  .scrolly__steps{position:relative;margin-top:-100vh;z-index:2}
+  .step{min-height:100vh;display:flex;align-items:flex-end;justify-content:center;padding:0 18px 5vh}
+  .step .card{background:rgba(17,13,13,.82);backdrop-filter:blur(7px);
+    border:1px solid rgba(122,31,31,.55);border-radius:20px;padding:22px 26px;max-width:560px;
+    font-size:clamp(19px,3.4vw,25px);font-weight:600;transition:opacity .4s, transform .4s;opacity:.35;transform:translateY(10px)}
+  .step.active .card{opacity:1;transform:none;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+  .anno{display:block;margin-top:10px;color:var(--omer);font-size:16px;font-weight:700}
+
+  /* ---- visual components ---- */
+  .vpanel{background:linear-gradient(180deg,#241c1a,#181312);border:2px solid var(--oxblood);
+    border-radius:26px;padding:28px 30px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .vtitle{display:flex;align-items:center;gap:10px;color:var(--oxblood);font-weight:800;font-size:26px;margin-bottom:18px}
+  .vtitle i{width:12px;height:12px;background:var(--oxblood);border-radius:3px;display:inline-block}
+  .gv-item{animation:fadeUp .6s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+  .tl-row{display:flex;gap:16px;margin-bottom:14px}
+  .tl-dot{width:22px;height:22px;border-radius:50%;background:var(--oxblood);flex:0 0 auto;margin-top:4px;box-shadow:0 0 0 5px var(--ink)}
+  .tl-date{color:var(--omer);font-weight:800;font-size:22px}
+  .tl-label{color:var(--bone);font-weight:600;font-size:23px}
+
+  .bar-row{margin-bottom:14px}
+  .bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:23px;margin-bottom:5px}
+  .bar-track{height:22px;background:rgba(243,239,232,.12);border-radius:7px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:7px;width:0;animation:grow 1s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes grow{to{width:var(--w)}}
+  .round-name{color:var(--maya);font-weight:800;font-size:20px;margin:6px 0 8px}
+
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 26px;text-align:center}
+  .stat{flex:0 1 200px;min-width:0}
+  .stat .val{font-size:clamp(22px,2.8vw,34px);font-weight:900;line-height:1.15;white-space:nowrap}
+  .stat .lbl{color:var(--muted);font-size:18px;margin-top:6px;line-height:1.3}
+
+  .cols{display:flex;gap:20px}
+  .col{flex:1}
+  .col h4{font-size:22px;font-weight:800;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid}
+  .col.r h4{color:var(--maya);border-color:var(--maya)}
+  .col.l h4{color:var(--omer);border-color:var(--omer)}
+  .col p{margin:0 0 8px;font-size:20px;display:flex;gap:6px}
+  .divider{width:2px;background:rgba(243,239,232,.15)}
+
+  .judge{display:flex;gap:12px;align-items:center;margin-bottom:11px}
+  .judge .d{width:15px;height:15px;border-radius:50%;flex:0 0 auto}
+  .judge .n{font-weight:800;font-size:23px;min-width:150px}
+  .judge .s{color:var(--muted);font-size:20px}
+
+  .verdict{text-align:center;padding:14px 0}
+  .verdict .lbl{color:var(--oxblood);font-weight:700;letter-spacing:2px;font-size:22px}
+  .verdict .val{font-size:clamp(44px,10vw,80px);font-weight:900;margin:8px 0}
+  .verdict .sub{color:var(--muted);font-size:22px}
+
+  .quote{font-size:clamp(24px,4.6vw,36px);font-weight:700;line-height:1.35}
+  .quote .mark{color:var(--oxblood);font-size:80px;line-height:.4;height:34px;font-weight:900}
+  .quote .src{color:var(--maya);font-weight:700;font-size:22px;margin-top:14px}
+
+  .hero-v{text-align:center}
+  .hero-v .val{font-size:clamp(70px,20vw,180px);font-weight:900;line-height:.9}
+  .hero-v .lbl{color:var(--muted);font-size:22px;margin-top:12px}
+
+  /* ---- poll ---- */
+  .poll{padding:90px 22px;text-align:center}
+  .poll h3{font-size:clamp(26px,5vw,40px);font-weight:900;margin:0 0 26px}
+  .poll .opts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .poll button{background:transparent;border:2px solid var(--oxblood);color:var(--bone);
+    font-family:inherit;font-size:22px;font-weight:800;padding:16px 34px;border-radius:999px;cursor:pointer;transition:.2s}
+  .poll button:hover{background:var(--oxblood)}
+  .poll button.sel{background:var(--oxblood)}
+  .poll .reveal{max-width:34ch;margin:28px auto 0;color:var(--bone);font-size:22px;
+    opacity:0;transform:translateY(10px);transition:.5s}
+  .poll .reveal.show{opacity:1;transform:none}
+
+  /* ---- footer ---- */
+  .foot{border-top:1px solid rgba(243,239,232,.14);padding:60px 22px;text-align:center;color:var(--muted)}
+  .foot .cases{font-size:16px;line-height:1.9}
+  .foot .judges{font-size:16px;margin-top:14px}
+  .foot .brand{color:var(--oxblood);font-weight:800;letter-spacing:4px;margin-top:30px;font-size:20px}
+  .foot a{display:inline-block;margin-top:16px}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .step .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="courthouse" aria-hidden="true">
+  <svg viewBox="0 0 200 160" fill="none" stroke="#f3efe8" stroke-width="2">
+    <polygon points="15,62 100,14 185,62"/><rect x="18" y="64" width="164" height="10"/>
+    <rect x="28" y="78" width="16" height="60" rx="2"/><rect x="60" y="78" width="16" height="60" rx="2"/>
+    <rect x="92" y="78" width="16" height="60" rx="2"/><rect x="124" y="78" width="16" height="60" rx="2"/>
+    <rect x="156" y="78" width="16" height="60" rx="2"/><rect x="14" y="140" width="172" height="12"/>
+  </svg>
+</div>
+
+<header class="hero">
+  <div class="kicker">חדלות בגובה העיניים</div>
+  <h1 id="h-title"></h1>
+  <p class="dek" id="h-dek"></p>
+  <div class="hook"><div class="val" id="h-val"></div><div class="lbl" id="h-lbl"></div></div>
+  <div class="scrollcue">גללו למטה ↓</div>
+</header>
+
+<section class="scrolly">
+  <div class="scrolly__graphic"><div class="gfx" id="gfx"></div></div>
+  <div class="scrolly__steps" id="steps"></div>
+</section>
+
+<section class="poll" id="poll" hidden>
+  <h3 id="poll-q"></h3>
+  <div class="opts" id="poll-opts"></div>
+  <p class="reveal" id="poll-reveal"></p>
+</section>
+
+<footer class="foot">
+  <div class="meta" id="f-meta"></div>
+  <div class="brand">חדלות בגובה העיניים</div>
+  <a href="" target="_blank" rel="noopener">להאזנה לפרק המלא →</a>
+</footer>
+
+<script src="https://unpkg.com/scrollama"></script>
+<script>
+window.ESSAY = {"title": "דחייה איננה פטור", "dek": "חמישה ימים אחרי פרוץ המלחמה הקפיא הממונה את התשלומים החודשיים בהליכי חדלות פירעון — אך החוב ממשיך להצטבר, ומועד ההשלמה נותר פתוח. היכן עובר הגבול בין דחייה לפטור, ומהו המוקש שעל הנאמן לזהות?", "hook": {"value": "3", "label": "תשלומים חודשיים ודוחות דו-חודשיים — אוקטובר, נובמבר ודצמבר 2023 — שניתן לדחות. מועד להשלמתם: טרם נקבע"}, "sections": [{"prose": "ב-12.10.2023, חמישה ימים בלבד לאחר פרוץ מלחמת ״חרבות ברזל״, פרסם הממונה על הליכי חדלות פירעון ושיקום כלכלי את נוהל 23. פחות מחודש לאחר מכן כבר נדרשה מהדורה שנייה — עדות לקצב שבו התגלגל מצב החירום אל תוך ההליכים.", "visual": {"type": "timeline", "title": "ציר הזמן של הנוהל", "events": [{"date": "07.10.2023", "label": "פרוץ מלחמת ״חרבות ברזל״ ותחילת מצב החירום"}, {"date": "12.10.2023", "label": "פרסום נוהל 23 — דחיית תשלומים ודוחות"}, {"date": "09.11.2023", "label": "מהדורה 2 של הנוהל"}, {"date": "אוקטובר–דצמבר 2023", "label": "התקופה שעליה חלה הדחייה"}, {"date": "תום מצב החירום", "label": "מועד ההשלמה יפורסם בהודעת עדכון — טרם נקבע"}]}, "annotation": "אחראית הנוהל: עו״ד הילה גולברי בר-און"}, {"prose": "הנוהל פורש רשת רחבה: הוא חל על תשלומים שהוטלו על ידי הממונה בתקופת הביניים, על תשלומים שקבע בית המשפט בצו לשיקום כלכלי, על חובת הדיווח הדו-חודשי — ובחלקו האחרון גם על חייבים בהליכי פשיטת רגל לפי הפקודה.", "visual": {"type": "stats", "items": [{"value": "ס׳ 156", "label": "תשלום ביניים שהטיל הממונה"}, {"value": "ס׳ 162", "label": "תשלום שקבע בית המשפט בצו לשיקום כלכלי"}, {"value": "תק׳ 108", "label": "חובת דוח הכנסות והוצאות דו-חודשי"}, {"value": "פש״ר", "label": "חייבים לפי פקודת פשיטת הרגל — חלק ה׳ לנוהל בלבד"}], "title": "על מי חל הנוהל"}, "annotation": "התנאי המשותף: החייב ״מתקשה״ בעמידה בחובה כתוצאה ממצב החירום"}, {"prose": "בהליכים לפי החוק החדש הדחייה אינה טעונה בקשה ואינה טעונה אישור: החייב ״רשאי לדחות״ את התשלום ואת הדוח — נקודה. עבור הנאמן פירוש הדבר שהיעדר תשלום בחודשים אלה אינו, כשלעצמו, הפרה.", "visual": {"type": "hero", "value": "ללא בקשה", "label": "הדחייה נתונה לחייב כזכות — אין צורך בפנייה לממונה או לבית המשפט"}, "annotation": "סעיפים 6–7 לנוהל"}, {"prose": "אך יש לדייק במה שהנוהל מעניק ובמה שאינו מעניק. הדחייה משנה את מועד הקיום — לא את היקף החיוב. כל שקל שנדחה ממתין בצד השני של מצב החירום.", "visual": {"type": "contrast", "title": "מה הנוהל נותן — ומה לא", "left": {"title": "מעניק", "points": ["דחיית מועד התשלום החודשי לחודשים אוקטובר–דצמבר 2023", "דחיית מועד הגשת הדוח הדו-חודשי", "מרחב נשימה עד להודעת עדכון מאת הממונה"]}, "right": {"title": "אינו מעניק", "points": ["פטור מהתשלומים — החוב נותר במלואו וטעון השלמה", "פטור מהגשת הדוחות שנדחו", "הקלה כלשהי לחייב שמצבו לא השתנה"]}}, "annotation": "סעיף 10 לנוהל: דחייה — לא מחיקה"}, {"prose": "הפרט המפתיע ביותר בנוהל הוא דווקא מה שאין בו: מועד. נוכח חוסר הוודאות באשר למשך מצב החירום, לא נקבע כלל מתי יושלמו התשלומים והדוחות שנדחו. הנאמן מנהל, בפועל, פיגור מצטבר ללא תאריך פירעון.", "visual": {"type": "hero", "value": "לא נקבע", "label": "מועד להשלמת התשלומים והדוחות שנדחו — יפורסם רק בתום מצב החירום, כפי שיקבע הממונה"}, "annotation": "סעיף 8 לנוהל"}, {"prose": "וכאן המוקש: הזכות לדחות שמורה רק למי שמצב החירום פגע ביכולתו. חייב שעניינו לא השתנה ושהפסיק לשלם בהסתמך על הנוהל — אינו מוגן. על הנאמן להבחין בין דחייה לגיטימית לבין הפרה שמתחפשת לדחייה.", "visual": {"type": "quote", "text": "למען הסר ספק חייב שלא חל כל שינוי במצבו כתוצאה ממצב החירום נדרש לשלם את התשלום החודשי ולהגיש את הדוחות הדו-חודשיים כסדרם.", "source": "סעיף 10 לנוהל"}, "annotation": "הדוחות הדו-חודשיים שיוגשו בדיעבד הם הכלי המרכזי לבחינה זו"}, {"prose": "לצד הדחייה הגורפת, הנוהל פותח חלון פרטני: חייב שמצב החירום שינה את נסיבותיו יוכל, בתום התקופה, לבקש הפחתה או אף פטור — באופן רטרואקטיבי. כאן נכנס שיקול הדעת של הממונה, וכאן צפוי גל הבקשות שילווה את תיקי התקופה.", "visual": {"type": "stats", "items": [{"value": "156(ה)", "label": "סמכות הממונה לשינוי תשלומי הביניים"}, {"value": "170(ג)", "label": "סמכות לשינוי תשלומים בצו לשיקום כלכלי"}, {"value": "רטרואקטיבי", "label": "הממונה ישקול החלת ההחלטה למפרע"}], "title": "מסלול הבקשות שאחרי החירום"}, "annotation": "סעיפים 11–12 לנוהל — הבקשה תוגש רק בתום מצב החירום"}, {"prose": "בהליכי פשיטת רגל לפי הפקודה התמונה שונה מהותית: הסמכות לדחות נתונה לבית המשפט המחוזי בלבד, והכונס הרשמי יכול להתחייב רק לדבר אחד — שלא לנקוט ולא לתמוך בהליכים נגד חייב שיעכב תשלום או דוח, ובלבד שישלים אותם במועד שייקבע.", "visual": {"type": "contrast", "title": "שני מסלולים, שתי סמכויות", "left": {"title": "הליכי חדלות פירעון — החוק", "points": ["הדחייה מכוח הנוהל עצמו, ללא בקשה", "בקשות הפחתה ופטור מוגשות לממונה", "מועד ההשלמה ייקבע בהודעת הממונה"]}, "right": {"title": "הליכי פשיטת רגל — הפקודה", "points": ["הסמכות לדחות מסורה לבית המשפט המחוזי", "הכונ״ר מתחייב להימנעות מהליכים בלבד", "שינוי נסיבות — בבקשה לבית המשפט המחוזי"]}}, "annotation": "סעיפים 13–14 לנוהל"}], "poll": {"question": "חייב בתיק שבטיפולך, שהכנסתו לא נפגעה כלל, הפסיק לשלם באוקטובר–דצמבר 2023 בהסתמך על הנוהל. האם הוא מוגן?", "options": ["כן — הדחייה חלה על כלל החייבים בתקופה זו", "לא — הנוהל חל רק על מי שמצב החירום פגע ביכולתו", "תלוי בהחלטה פרטנית של הממונה"], "reveal": "לא. סעיף 10 קובע מפורשות שחייב שלא חל כל שינוי במצבו נדרש לשלם ולהגיש דוחות כסדרם — זהו המוקש המרכזי שעל הנאמן לבחון בדיעבד, בעיקר באמצעות הדוחות שיוגשו בהשלמה."}, "method": "המסה מבוססת על נוהל מספר 23 (מהדורה 2) של הממונה על הליכי חדלות פירעון ושיקום כלכלי והכונס הרשמי, שפורסם ביום 12.10.2023 ועודכן ביום 9.11.2023, בעניין חובת התשלומים וחובת הדיווח הדו-חודשי בשל מצב החירום בעקבות מלחמת ״חרבות ברזל״. ההפניות לסעיפי החוק, התקנות והנוהל נלקחו מלשון הנוהל כפי שפורסם. הנוהל הוגדר כזמני והתייחס בשלב פרסומו לחודשים אוקטובר–דצמבר 2023 בלבד; אין באמור משום ייעוץ משפטי.", "meta": []};
+(function(){
+  var E = window.ESSAY, esc = function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;};
+
+  // hero + footer
+  document.getElementById('h-title').textContent = E.title||'';
+  document.getElementById('h-dek').textContent = E.dek||'';
+  if(E.hook){document.getElementById('h-val').textContent=E.hook.value||'';document.getElementById('h-lbl').textContent=E.hook.label||'';}
+  if(E.meta&&E.meta.length){document.getElementById('f-meta').innerHTML=E.meta.map(function(m){
+    return '<div>'+esc((m.emoji||'')+' '+(m.label?m.label+': ':'')+(m.values||[]).join(' · '))+'</div>';}).join('');}
+
+  // ---- visual renderers ----
+  function di(i){return 'style="animation-delay:'+(i*0.08)+'s"';}
+  function render(v){
+    if(!v) return '';
+    switch(v.type){
+      case 'hero': return '<div class="vpanel hero-v"><div class="val">'+esc(v.value)+'</div><div class="lbl">'+esc(v.label)+'</div></div>';
+      case 'timeline': return '<div class="vpanel">'+vtitle(v.title)+ (v.events||[]).map(function(e,i){
+        return '<div class="tl-row gv-item" '+di(i)+'><span class="tl-dot"></span><div><div class="tl-date">'+esc(e.date)+'</div><div class="tl-label">'+esc(e.label)+'</div></div></div>';}).join('')+'</div>';
+      case 'voteCompare': {
+        var max=1;(v.rounds||[]).forEach(function(r){(r.results||[]).forEach(function(x){if(x.votes>max)max=x.votes;});});
+        return '<div class="vpanel">'+vtitle(v.title)+(v.rounds||[]).map(function(r){
+          var win=Math.max.apply(null,(r.results||[]).map(function(x){return x.votes;}));
+          return '<div class="round-name">'+esc(r.name)+'</div>'+(r.results||[]).map(function(x){
+            var w=Math.round(x.votes/max*100);var c=x.votes===win?'var(--oxblood)':'rgba(217,105,79,.5)';
+            return '<div class="bar-row"><div class="bar-head"><span>'+esc(x.name)+'</span><span data-count="'+x.votes+'">0</span></div><div class="bar-track"><div class="bar-fill" style="--w:'+w+'%;background:'+c+'"></div></div></div>';
+          }).join('');}).join('')+'</div>';
+      }
+      case 'stats': return '<div class="vpanel"><div class="stats">'+(v.items||[]).map(function(it,i){
+        var n=/^\d+$/.test(String(it.value));
+        return '<div class="stat gv-item" '+di(i)+'><div class="val" '+(n?'data-count="'+it.value+'"':'')+'>'+(n?'0':esc(it.value))+'</div><div class="lbl">'+esc(it.label)+'</div></div>';}).join('')+'</div></div>';
+      case 'contrast': return '<div class="vpanel"><div class="cols">'+col(v.right,'r')+'<div class="divider"></div>'+col(v.left,'l')+'</div></div>';
+      case 'judges': return '<div class="vpanel">'+vtitle(v.title)+(v.judges||[]).map(function(j,i){
+        return '<div class="judge gv-item" '+di(i)+'><span class="d" style="background:'+(i===0?'var(--oxblood)':'var(--omer)')+'"></span><span class="n">'+esc(j.name)+'</span><span class="s">'+esc(j.stance)+'</span></div>';}).join('')+'</div>';
+      case 'verdict': return '<div class="vpanel verdict"><div class="lbl">'+esc(v.label)+'</div><div class="val">'+esc(v.value)+'</div>'+(v.sub?'<div class="sub">'+esc(v.sub)+'</div>':'')+'</div>';
+      case 'quote': return '<div class="vpanel quote"><div class="mark">”</div>'+esc(v.text)+(v.source?'<div class="src">— '+esc(v.source)+'</div>':'')+'</div>';
+      default: return '';
+    }
+  }
+  function vtitle(t){return t?'<div class="vtitle"><i></i>'+esc(t)+'</div>':'';}
+  function col(c,cls){if(!c)return '<div class="col"></div>';return '<div class="col '+cls+'"><h4>'+esc(c.title)+'</h4>'+(c.points||[]).map(function(p){return '<p><span>•</span><span>'+esc(p)+'</span></p>';}).join('')+'</div>';}
+
+  function enhance(root){ // count-up numbers
+    root.querySelectorAll('[data-count]').forEach(function(el){
+      var target=parseInt(el.getAttribute('data-count'),10),start=null,dur=900;
+      function tick(ts){if(!start)start=ts;var p=Math.min(1,(ts-start)/dur);el.textContent=Math.round(p*target);if(p<1)requestAnimationFrame(tick);}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // build steps
+  var stepsEl=document.getElementById('steps');
+  E.sections.forEach(function(s,i){
+    var d=document.createElement('div');d.className='step';d.dataset.idx=i;
+    d.innerHTML='<div class="card">'+esc(s.prose)+(s.annotation?'<span class="anno">'+esc(s.annotation)+'</span>':'')+'</div>';
+    stepsEl.appendChild(d);
+  });
+
+  var gfx=document.getElementById('gfx'),cur=-1;
+  function setActive(i){
+    if(i===cur)return;cur=i;
+    document.querySelectorAll('.step').forEach(function(s,idx){s.classList.toggle('active',idx===i);});
+    gfx.innerHTML=render(E.sections[i].visual);enhance(gfx);
+  }
+  setActive(0);
+
+  if(window.scrollama){
+    var sc=scrollama();
+    sc.setup({step:'.step',offset:0.62}).onStepEnter(function(r){setActive(r.index);});
+    window.addEventListener('resize',sc.resize);
+  }
+
+  // poll
+  if(E.poll&&E.poll.question){
+    var p=document.getElementById('poll');p.hidden=false;
+    document.getElementById('poll-q').textContent=E.poll.question;
+    var opts=document.getElementById('poll-opts'),rev=document.getElementById('poll-reveal');
+    (E.poll.options||[]).forEach(function(o){
+      var b=document.createElement('button');b.textContent=o;
+      b.onclick=function(){opts.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');rev.textContent=E.poll.reveal||'';rev.classList.add('show');};
+      opts.appendChild(b);
+    });
+  }
+})();
+</script>
+</body>
+</html>
