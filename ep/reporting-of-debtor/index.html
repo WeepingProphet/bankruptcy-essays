@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>כל קבלה, עד הצו — חדלות בגובה העיניים</title>
+<meta name="description" content="נוהל מס׳ 6 של הממונה קובע מה, מתי ובאיזה פירוט מדווח החייב — ובכל צומת מרכזי בו ניצב שיקול הדעת של הנאמן. מדריך חזותי לחובת הדיווח, מזווית מנהל התיק.">
+<meta property="og:title" content="כל קבלה, עד הצו">
+<meta property="og:description" content="נוהל מס׳ 6 של הממונה קובע מה, מתי ובאיזה פירוט מדווח החייב — ובכל צומת מרכזי בו ניצב שיקול הדעת של הנאמן. מדריך חזותי לחובת הדיווח, מזווית מנהל התיק.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f1512;--paper:#f2efe7;--teal:#1f6f5c;--teal-lift:#2f8f78;
+    --gold:#d9a441;--slate:#5c8fb3;--paper-dim:#e3ded2;--ink-soft:#3a443f;
+    --line:rgba(15,21,18,.14);--font:"Alef",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);
+    font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .bar{background:var(--ink);color:var(--paper)}
+  .bar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+  .bar .mark{font-weight:700;font-size:20px;letter-spacing:.2px;text-decoration:none;color:var(--paper)}
+  .bar .scale{color:var(--gold);font-size:22px;line-height:1}
+  .bar .eyebrow{margin-inline-start:auto;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--paper-dim);opacity:.8}
+  .hero{background:var(--ink);color:var(--paper);padding:22px 0 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5}
+  .kick{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .kick .n{font-size:15px;color:var(--paper)}
+  .kick .bar-sm{width:34px;height:1px;background:var(--gold);opacity:.6}
+  h1{font-weight:700;line-height:1.04;margin:.34em 0 .2em;
+    font-size:clamp(40px,7.5vw,88px);letter-spacing:-.4px}
+  .dek{max-width:44ch;font-size:clamp(17px,2.3vw,21px);color:var(--paper-dim);line-height:1.55;margin:0 0 22px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .chip{font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:999px;
+    border:1px solid rgba(242,239,231,.28);color:var(--paper-dim)}
+  .chip.on{background:rgba(217,164,65,.14);border-color:rgba(217,164,65,.5);color:var(--gold)}
+  .player{background:rgba(242,239,231,.06);border:1px solid rgba(242,239,231,.16);
+    border-radius:16px;padding:20px 22px;max-width:640px}
+  .player .lbl{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--teal-lift);margin-bottom:14px}
+  .player .lbl::before{content:"\25B6";font-size:11px}
+  audio{width:100%;height:44px}
+  .dl{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;
+    padding:11px 18px;border-radius:10px;text-decoration:none;transition:transform .12s ease,background .18s ease,border-color .18s ease,color .18s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .btn.solid{background:var(--teal);color:var(--paper)}
+  .btn.solid:hover{background:var(--teal-lift)}
+  .btn.ghost{background:transparent;color:var(--paper);border:1px solid rgba(242,239,231,.32)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+  section.pad{padding:64px 0}
+  .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:start}
+  .eyebrow2{font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);margin:0 0 14px}
+  .lede{font-weight:700;font-size:clamp(21px,2.6vw,26px);line-height:1.45;margin:0 0 18px}
+  .body-txt{font-size:17.5px;line-height:1.75;color:var(--ink-soft)}
+  .body-txt b{color:var(--ink);font-weight:700}
+  .short-col{position:sticky;top:24px}
+  .short-frame{background:var(--ink);border-radius:18px;padding:12px;box-shadow:0 24px 60px -28px rgba(15,21,18,.7)}
+  video{display:block;width:100%;border-radius:10px;background:#000;aspect-ratio:9/16}
+  .short-cap{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13.5px;color:var(--paper-dim)}
+  .short-cap a{color:var(--gold);text-decoration:none;font-weight:700}
+  .short-cap a:hover{text-decoration:underline}
+  .essay{background:var(--ink);color:var(--paper)}
+  .essay .grid2{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center}
+  .essay .big{font-weight:700;font-size:clamp(56px,10vw,104px);line-height:.9;color:var(--gold)}
+  .essay h3{font-weight:700;font-size:clamp(22px,3vw,30px);margin:0 0 8px}
+  .essay p{color:var(--paper-dim);margin:0 0 20px;max-width:52ch}
+  .back{display:inline-block;margin:26px 0 0;font-size:14.5px;font-weight:700;color:var(--teal);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  footer{padding:44px 0 56px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-soft)}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:baseline}
+  footer .fmark{font-weight:700;color:var(--ink);font-size:17px}
+  footer .sp{margin-inline-start:auto}
+  footer a{color:var(--teal);text-decoration:none;font-weight:700}
+  footer a:hover{text-decoration:underline}
+  /* homepage cards */
+  .about{font-size:clamp(18px,2.2vw,22px);color:var(--ink-soft);max-width:60ch;margin:0 0 8px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
+    border-radius:18px;padding:26px 26px 22px;transition:transform .14s ease,box-shadow .2s ease;text-decoration:none;color:inherit}
+  .card:hover{transform:translateY(-3px);box-shadow:0 20px 44px -26px rgba(15,21,18,.5)}
+  .card .cnum{font-weight:700;font-size:40px;line-height:1;color:var(--gold)}
+  .card .ckick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:14px 0 8px}
+  .card h2{font-weight:700;font-size:clamp(22px,2.6vw,27px);line-height:1.2;margin:0 0 10px}
+  .card p{font-size:16px;line-height:1.6;color:var(--ink-soft);margin:0 0 18px}
+  .card .go{margin-top:auto;font-weight:700;color:var(--teal)}
+  /* quiz */
+  .quiz{background:var(--paper);border-top:1px solid var(--line)}
+  .qhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 18px;margin-bottom:26px}
+  .qhead h2{font-weight:700;font-size:clamp(24px,3vw,32px);margin:0}
+  .qscore{margin-inline-start:auto;font-weight:700;font-size:15px;color:var(--ink-soft);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 16px}
+  .qscore b{color:var(--teal);font-size:18px}
+  .qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:16px}
+  .qq{font-weight:700;font-size:18px;line-height:1.45;margin-bottom:16px}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font-family:var(--font);font-size:16px;font-weight:600;text-align:right;color:var(--ink);
+    background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;
+    cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:10px}
+  .qopt::before{content:"";width:15px;height:15px;border-radius:50%;border:2px solid var(--ink-soft);flex:0 0 auto;opacity:.5}
+  .qopt:hover:not(:disabled){border-color:var(--teal);background:#fff}
+  .qopt:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--teal);background:rgba(31,111,92,.12);color:#155}
+  .qopt.correct::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1;font-size:15px;text-align:center}
+  .qopt.wrong{border-color:#b4462f;background:rgba(180,70,47,.1);color:#8a2f1c}
+  .qopt.wrong::before{content:"✕";border:none;color:#b4462f;font-weight:900;opacity:1;font-size:14px;text-align:center}
+  .qopt.reveal::before{content:"✓";border:none;color:var(--teal);font-weight:900;opacity:1}
+  .qopt.reveal{border-color:var(--teal);color:#155}
+  .qfb{margin-top:14px;padding:13px 16px;border-radius:10px;font-size:15.5px;line-height:1.55}
+  .qfb b{font-weight:700}
+  .qfb.ok{background:rgba(31,111,92,.1);color:#155}
+  .qfb.no{background:rgba(217,164,65,.14);color:#7a5a13}
+  .qdone{margin-top:20px;padding:18px 22px;border-radius:14px;background:var(--ink);color:var(--paper);
+    font-weight:700;font-size:18px;text-align:center;display:none}
+  .qdone.show{display:block}
+  @media (max-width:760px){
+    .grid{grid-template-columns:1fr;gap:36px}
+    .short-col{position:static;max-width:360px}
+    .essay .grid2{grid-template-columns:1fr;gap:16px}
+    .cards{grid-template-columns:1fr}
+    section.pad{padding:48px 0}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap"><span class="scale">⚖</span><a class="mark" href="../../">חדלות בגובה העיניים</a><span class="eyebrow">פודקאסט לנאמנים</span></div></div>
+
+<header class="hero"><div class="wrap">
+  <span class="kick"><span class="n">פרק 29</span><span class="bar-sm"></span> הממונה</span>
+  <h1>כל קבלה, עד הצו</h1>
+  <p class="dek">נוהל מס׳ 6 של הממונה קובע מה, מתי ובאיזה פירוט מדווח החייב — ובכל צומת מרכזי בו ניצב שיקול הדעת של הנאמן. מדריך חזותי לחובת הדיווח, מזווית מנהל התיק.</p>
+  <div class="chips"><span class="chip on">≈ 8 דקות</span></div>
+  <div class="player">
+    <div class="lbl">האזנה לפרק</div>
+    <audio controls preload="metadata" src="episode.mp3"></audio>
+    <div class="dl">
+      <a class="btn solid" href="episode.mp3" download>⬇ הורדת הפרק (MP3)</a>
+      <a class="btn ghost" href="short.mp4" download>⬇ הורדת הסרטון (MP4)</a>
+    </div>
+  </div>
+</div></header>
+
+<section class="pad"><div class="wrap grid">
+  <div>
+    <p class="eyebrow2">על הפרק</p>
+    <p class="lede">רף האסמכתאות שהחייב נדרש לצרף לכל דוח — עד מועד הצו לשיקום כלכלי</p>
+    <p class="body-txt">הפרק עוסק בנוהל מספר 6 של הממונה, המסדיר את חובת הדיווח של החייב לאורך ההליך: דוחות הכנסות והוצאות דו-חודשיים עד הצו לשיקום כלכלי, ולאחריו דוחות חצי-שנתיים עם דרישת אסמכתאות מצומצמת. עבור הנאמן, הדוחות הם חומר הגלם לדוח ממצאי הבדיקה, והנוהל מעגן את סמכותו לדרוש מהחייב דיווח בכל עניין הנוגע לתפקידו ובמועד שהוא קובע, וכן את מעמדו כגורם ממליץ במתן הקלות או פטור מדיווח. חשוב להכיר גם את הסנקציות שאי-עמידה בנוהל מאפשרת להפעיל - הארכת תקופת התשלומים, שלילת הפטר לאלתר ואף ביטול הצו לפתיחת הליכים - כלים שכדאי לנאמן להכיר כשהוא נתקל בחייב שאינו משתף פעולה.</p>
+    <a class="back" href="../../">← כל הפרקים</a>
+  </div>
+  <div class="short-col">
+    <div class="short-frame">
+      <video controls preload="metadata" playsinline src="short.mp4"></video>
+      <div class="short-cap"><span>הסרטון הקצר</span><a href="short.mp4" download>הורדה ↓</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="essay"><div class="wrap pad">
+  <div class="grid2">
+    <div class="big">§</div>
+    <div>
+      <p class="eyebrow2" style="color:var(--gold)">סיכום גרפי</p>
+      <h3>הנקודות המרכזיות של הנוהל — בגלילה אחת</h3>
+      <p>גרסה אינטראקטיבית של הפרק: הגרפיקה משתנה תוך כדי גלילה ומראה בדיוק היכן נותר שיקול הדעת של הנאמן, והיכן הנוהל כובל אותו.</p>
+      <a class="btn solid" href="essay.html">קריאת הסיכום הגרפי ←</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="quiz"><div class="wrap pad">
+  <p class="eyebrow2">בחן את עצמך</p>
+  <div class="qhead"><h2>10 שאלות על הפרק</h2><span class="qscore">ניקוד: <b id="qs">0</b> / <span id="qtot">0</span></span></div>
+  <div id="qlist"></div>
+  <div class="qdone" id="qdone"></div>
+</div></section>
+<script>window.EP_QUIZ = {"questions": [{"q": "הכנסותיהם והוצאותיהם של אילו גורמים על החייב לפרט בדוח התקופתי על הכנסות והוצאות?", "options": ["של החייב בלבד", "של החייב ובן זוגו בלבד", "של החייב, בן זוגו, ילדיו הקטינים ומי שפרנסתם עליו", "של החייב וכל קרוביו מדרגה ראשונה, לרבות ילדים בגירים"], "correct": 2, "feedback": "לפי סעיף 4.1 לנוהל, הדוח מקיף את החייב, בן זוגו, ילדיו הקטינים וכל מי שפרנסתם עליו. נאמן הבוחן דוח שאינו כולל את הכנסות בן הזוג צריך לדרוש השלמה."}, {"q": "ניתן צו לפתיחת הליכים במהלך חודש פברואר. מהו המועד האחרון להגשת הדוח הראשון ולאיזו תקופה יתייחס?", "options": ["עד ה-15 במרץ, עבור חודש פברואר בלבד", "עד ה-15 באפריל, עבור התקופה מתחילת פברואר ועד סוף מרץ", "עד ה-15 באפריל, עבור התקופה ממועד מתן הצו המדויק ועד יום הגשת הדוח", "בתוך 60 יום ממתן הצו, עבור החודשיים שקדמו למתן הצו"], "correct": 1, "feedback": "לפי סעיף 6.1.1 לנוהל, הדוח הראשון מוגש עד היום ה-15 לחודש שחל חודשיים לאחר מתן הצו, ומתייחס לתקופה מתחילת החודש שבו ניתן הצו ועד תום החודש שלפני מועד ההגשה - בדיוק כדוגמה שבנוהל."}, {"q": "מהי תדירות הגשת הדוחות לפני ואחרי הצו לשיקום כלכלי?", "options": ["דוחות חודשיים לפני הצו ודוחות רבעוניים לאחריו", "דוחות דו-חודשיים לאורך כל ההליך, עד תום תקופת התשלומים", "דוחות דו-חודשיים עד הצו לשיקום כלכלי, ולאחריו דוחות שנתיים", "דוחות דו-חודשיים עד הצו לשיקום כלכלי, ולאחריו דוחות חצי-שנתיים עד תום תקופת התשלומים, שיוגשו עד ה-15 בחודש שלאחר התקופה"], "correct": 3, "feedback": "סעיפים 6.1.2 ו-6.2 לנוהל: עד הצו לשיקום כלכלי - דוחות לתקופות של חודשיים קלנדריים; ממועד הצו ועד סיום תקופת התשלומים - דוחות לתקופות של שישה חודשים. בשני המקרים המועד הוא היום ה-15 בחודש שאחרי התקופה, אלא אם הורו הממונה או בית המשפט אחרת."}, {"q": "אילו אסמכתאות יש לצרף לדוחות המוגשים עד מועד הצו לשיקום כלכלי?", "options": ["אסמכתאות מלאות לכל ההכנסות וההוצאות, לרבות קבלות על כל הרכישות, ותדפיסי תנועות בכל חשבונות הבנק של החייב, בן הזוג ומי שפרנסתם עליו", "אסמכתאות על הכנסות בלבד; ההוצאות מדווחות בהצהרה ללא תיעוד", "אסמכתאות לשינויים חריגים בלבד בהכנסות ובהוצאות", "תדפיסי תנועות בחשבון הבנק של החייב בלבד, ללא חשבונות בן הזוג"], "correct": 0, "feedback": "סעיף 5.1 לנוהל דורש בשלב שעד הצו לשיקום כלכלי תיעוד מלא - כולל קבלות על כל הרכישות ותדפיסי בנק גם של בן הזוג ומי שפרנסתם על החייב. זהו שלב איסוף המידע המרכזי לצורך דוח ממצאי הבדיקה של הנאמן."}, {"q": "אילו אסמכתאות נדרש החייב לצרף לדוחות המוגשים לאחר מועד הצו לשיקום כלכלי, כברירת מחדל?", "options": ["אותן אסמכתאות מלאות כמו לפני הצו, לרבות קבלות על כל הרכישות", "אסמכתאות על הכנסות החייב, תדפיסי תנועות בחשבון הבנק של החייב, ואסמכתאות לשינויים חריגים בלבד בהכנסות ובהוצאות", "אין חובת צירוף אסמכתאות כלל לאחר הצו לשיקום כלכלי", "תדפיסי תנועות בכל חשבונות הבנק של החייב ובן הזוג בלבד"], "correct": 1, "feedback": "לפי סעיף 5.2 לנוהל, לאחר הצו לשיקום כלכלי נדרש סט מצומצם: אסמכתאות הכנסה, תדפיסי חשבון הבנק של החייב, ותיעוד לשינויים חריגים בלבד. ההקלה אינה פוטרת מהגשת הדוח עצמו."}, {"q": "באילו תנאים רשאי הממונה לדרוש מהחייב להמשיך לצרף אסמכתאות מלאות גם לאחר הצו לשיקום כלכלי?", "options": ["רק באישור מוקדם של בית המשפט", "בנסיבות המצדיקות זאת ובהמלצת הנאמן", "רק כאשר החייב מנהל עסק", "אינו רשאי - ההקלה באסמכתאות לאחר הצו קבועה ואינה ניתנת לשינוי"], "correct": 1, "feedback": "סיפת סעיף 5.2 לנוהל: הממונה רשאי לדרוש המשך צירוף אסמכתאות מלאות בנסיבות המצדיקות זאת ובהמלצת הנאמן. כלומר, נאמן שמזהה התנהלות בעייתית יכול ליזום המלצה כזו לממונה, ללא צורך בפניה לבית המשפט."}, {"q": "בני זוג המקיימים משק בית משותף ושניהם בהליכי חדלות פירעון - כיצד יגישו את הדוח?", "options": ["חייבים להגיש שני דוחות נפרדים, אחד בכל תיק", "רשאים למלא דוח אחד משותף ולהגישו באחד התיקים בלבד, והוא ייחשב כהוגש בשניהם", "רשאים למלא דוח אחד משותף בחתימת שני החייבים, ועליהם להגישו בכל אחד מהתיקים המתנהלים בעניינם", "רשאים להגיש דוח משותף רק לאחר קבלת אישור מראש מבית המשפט"], "correct": 2, "feedback": "סעיף 7.2 לנוהל: מותר דוח משותף אחד, אך המוקש המעשי כפול - הדוח חייב להיות חתום על ידי שני החייבים ולהיות מוגש בכל אחד מהתיקים. הגשה בתיק אחד בלבד היא מחדל דיווח בתיק השני."}, {"q": "מי מוסמך להעניק לחייב הקלות או פטור מהגשת דוחות על הכנסות והוצאות, ובאיזה הליך?", "options": ["הנאמן, לפי שיקול דעתו ובהודעה לממונה", "בית המשפט בלבד, במסגרת הצו לשיקום כלכלי", "הממונה, במקרים חריגים, בהחלטה מנומקת ולאחר קבלת עמדת הנאמן", "פטור ניתן אוטומטית לכל חייב עם מתן הצו לשיקום כלכלי"], "correct": 2, "feedback": "סעיף 8 לנוהל: הסמכות היא של הממונה, רק במקרים חריגים, בהחלטה מנומקת ולאחר קבלת עמדת הנאמן. בנוסף, במסגרת הבקשה נדרש החייב להתחייב לדווח מידית על כל שינוי, למעט שינויים זניחים - כך שהפטור אינו פוטר ממעקב."}, {"q": "הנאמן דרש מהחייב דיווח בעניין הנוגע למילוי תפקידו. בתוך איזה מועד על החייב למסור את הדיווח?", "options": ["בתוך המועד שקבע הנאמן בדרישתו", "בתוך 15 יום ממועד הדרישה, כקבוע בנוהל", "במסגרת הדוח התקופתי הבא בלבד", "בהקדם האפשרי, אך לא יאוחר מ-30 יום"], "correct": 0, "feedback": "סעיף 11 לנוהל, מכוח סעיף 138 לחוק: הנאמן רשאי לדרוש דיווח בכל עניין הנוגע למילוי תפקידו, לפי שיקול דעתו ונסיבות המקרה, והחייב מחויב למסור את הדיווח בתוך המועד שקבע הנאמן עצמו בדרישה. כדאי לנקוב מועד מפורש בכל דרישה."}, {"q": "אילו תוצאות עלולות לנבוע מאי-עמידה של החייב בחובתו להגיש במועד דוחות אמת מלאים?", "options": ["קנס מנהלי שמטיל הממונה, ללא מעורבות בית המשפט", "בקשה או המלצה של הממונה לבית המשפט לתקופת תשלומים ארוכה מ-3 שנים או שאינה קצובה, לשלילת הפטר לאלתר או לביטול הצו לפתיחת הליכים, ובנסיבות מסוימות אף עבירה לפי סעיף 346(א)(3) לחוק", "עיכוב הדיון בצו לשיקום כלכלי בלבד, ללא סנקציה נוספת", "המרת ההליך להליך לפי פקודת פשיטת הרגל"], "correct": 1, "feedback": "סעיפים 12-13 לנוהל: הממונה רשאי לבקש או להמליץ לבית המשפט על הארכת תקופת התשלומים מעבר ל-3 שנים או תקופה שאינה קצובה, על אי-מתן הפטר לאלתר או על ביטול הצו לפתיחת הליכים, ובנסיבות מסוימות ההתנהלות עולה כדי עבירה לפי סעיף 346(א)(3) לחוק. לנאמן זהו הבסיס להמלצות בדוח ממצאי הבדיקה."}]};</script>
+<script>
+(function(){
+  var data=window.EP_QUIZ; if(!data||!data.questions||!data.questions.length)return;
+  var list=document.getElementById('qlist'),qsEl=document.getElementById('qs'),
+      qtotEl=document.getElementById('qtot'),doneEl=document.getElementById('qdone');
+  var total=data.questions.length; qtotEl.textContent=total;
+  var score=0,answered=0;
+  data.questions.forEach(function(q,qi){
+    var card=document.createElement('div'); card.className='qcard';
+    var h=document.createElement('div'); h.className='qq'; h.textContent=(qi+1)+'. '+q.q; card.appendChild(h);
+    var opts=document.createElement('div'); opts.className='qopts'; opts.setAttribute('role','group');
+    q.options.forEach(function(opt,oi){
+      var b=document.createElement('button'); b.type='button'; b.className='qopt'; b.textContent=opt;
+      b.addEventListener('click',function(){
+        if(card.classList.contains('answered'))return;
+        card.classList.add('answered'); answered++;
+        var right=(oi===q.correct);
+        if(right){b.classList.add('correct');score++;}
+        else{b.classList.add('wrong'); if(opts.children[q.correct])opts.children[q.correct].classList.add('reveal');}
+        for(var k=0;k<opts.children.length;k++)opts.children[k].disabled=true;
+        qsEl.textContent=score;
+        var fb=document.createElement('div'); fb.className='qfb '+(right?'ok':'no');
+        var strong=document.createElement('b'); strong.textContent=right?'נכון! ':'לא נכון. ';
+        fb.appendChild(strong); fb.appendChild(document.createTextNode(q.feedback||''));
+        card.appendChild(fb);
+        if(answered===total){doneEl.textContent='סיימת! '+score+' מתוך '+total+' תשובות נכונות.'; doneEl.classList.add('show');}
+      });
+      opts.appendChild(b);
+    });
+    card.appendChild(opts); list.appendChild(card);
+  });
+})();
+</script>
+<footer><div class="wrap"><span class="fmark">⚖ חדלות בגובה העיניים</span><span>נהלים ופסיקה בחדלות פירעון — לנאמנים, בגובה העיניים</span><span class="sp"><a href="https://nivsimon.space" rel="me">@nivsimon.space</a></span></div></footer>
+</body>
+</html>
